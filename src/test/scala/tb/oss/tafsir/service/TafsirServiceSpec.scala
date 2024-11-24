@@ -17,9 +17,18 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
 
   val ayah: Ayah = Ayah(1, "الفاتحة", 1, "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ")
 
+  val ayahInterpretation: AyahInterpretation = AyahInterpretation(
+    1,
+    "التفسير الميسر",
+    "/quran/1/2/",
+    2,
+    "(الحَمْدُ للهِ رَبِّ العَالَمِينَ) الثناء على الله بصفاته التي كلُّها أوصاف كمال، وبنعمه الظاهرة والباطنة، الدينية والدنيوية، وفي ضمنه أَمْرٌ لعباده أن يحمدوه، فهو المستحق له وحده، وهو سبحانه المنشئ للخلق، القائم بأمورهم، المربي لجميع خلقه بنعمه، ولأوليائه بالإيمان والعمل الصالح."
+  )
+
   def client(
     getTafsirListFn: => IO[List[Tafsir]] = IO(tafsirList),
     getAyahFn: => IO[Ayah] = IO(ayah),
+    getAyahInterpretationFn: => IO[AyahInterpretation] = IO(ayahInterpretation),
     getSurahsFn: => IO[List[Surah]] = IO(surahs)
   ): Client[IO] = new Client[IO] {
     override def getTafsirList: IO[List[Tafsir]] = getTafsirListFn
@@ -27,6 +36,9 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
     override def getAyah(surahNumber: Int, ayahNumber: Int): IO[Ayah] = getAyahFn
 
     override def getSurahs: IO[List[Client.Surah]] = getSurahsFn
+
+    override def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): IO[AyahInterpretation] =
+      getAyahInterpretationFn
   }
 
   test("It should return the tafsir list") {
@@ -76,6 +88,22 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
     service.getAyah(1, 2).unsafeRunAsync {
       case Right(result) => fail("Should not happen")
       case Left(error)   => error.getMessage should be("Cannot get ayah")
+    }
+  }
+
+  test("It should return an ayah interpretation") {
+    val service = TafsirService.impl[IO](client(getAyahInterpretationFn = IO(ayahInterpretation)))
+    service.getAyahInterpretation(1, 1, 2).unsafeRunAsync {
+      case Right(result) => result should be(ayahInterpretation)
+      case Left(error)   => fail("Should not happen")
+    }
+  }
+
+  test("It should return an error when the client fails while trying to retrieve an ayah interpretation") {
+    val service = TafsirService.impl[IO](client(getAyahInterpretationFn = IO.raiseError(new Throwable("Cannot get ayah interpretation"))))
+    service.getAyahInterpretation(1, 1, 2).unsafeRunAsync {
+      case Right(result) => fail("Should not happen")
+      case Left(error)   => error.getMessage should be("Cannot get ayah interpretation")
     }
   }
 }

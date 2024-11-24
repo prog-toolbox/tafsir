@@ -13,6 +13,7 @@ import tb.oss.tafsir.utils.AsyncExtensions.*
 trait Client[F[_]] {
   def getSurahs: F[List[Surah]]
   def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah]
+  def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): F[AyahInterpretation]
   def getTafsirList: F[List[Tafsir]]
 }
 
@@ -21,19 +22,19 @@ object Client {
   case class AyahNotFound(surahNumber: Int, ayahNumber: Int)
       extends Throwable(s"Ayah '$ayahNumber' for surah '$surahNumber' was not found")
 
-  case class UnknownError(
-    surahNumber: Int,
-    ayahNumber: Int,
-    response: Response[Either[ResponseException[String, io.circe.Error], Client.Ayah]]
-  ) extends Throwable(
-        s"Unknown error occurred when searching for ayah '$ayahNumber' of surah '$surahNumber, due to : $response"
-      )
+  case class AyahInterpretationNotFound(tafsirId: Int, surahNumber: Int, ayahNumber: Int)
+      extends Throwable(s"Tafsir '$tafsirId' for ayah '$ayahNumber' of surah '$surahNumber' was not found")
+
+  case class UnknownError(surahNumber: Int, ayahNumber: Int, response: Option[ResponseException[String, io.circe.Error]])
+      extends Throwable(s"Unknown error occurred '$ayahNumber' of surah '$surahNumber, due to : $response")
 
   case class Tafsir(id: Int, name: String, language: String, author: String, book_name: String)
 
   case class Surah(index: Int, name: String)
 
   case class Ayah(sura_index: Int, sura_name: String, ayah_number: Int, text: String)
+
+  case class AyahInterpretation(tafseer_id: Int, tafseer_name: String, ayah_url: String, ayah_number: Int, text: String)
 
   def impl[F[_]: Async](): Client[F] = new Client[F] {
 
@@ -69,7 +70,28 @@ object Client {
           }
         case res @ Response(body, StatusCode.NotFound, _, _, _, _) => AyahNotFound(surahNumber, ayahNumber).raiseError
         case res: Response[Either[ResponseException[String, io.circe.Error], Ayah]] =>
-          UnknownError(surahNumber, ayahNumber, res).raiseError
+          UnknownError(surahNumber, ayahNumber, res.body.swap.toOption).raiseError
+      }
+    }
+
+    override def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): F[AyahInterpretation] = {
+      val response = basicRequest
+        .get(uri"http://api.quran-tafseer.com/tafseer/$tafsirId/$surahNumber/$ayahNumber")
+        .headers(Map("Accept" -> "application/json"))
+        .response(asJson[AyahInterpretation])
+        .send(FetchBackend())
+        .toAsync[F]
+
+      response.flatMap {
+        case Response(body, StatusCode.Ok, _, _, _, _) =>
+          body match {
+            case Right(interpretation) => interpretation.pure
+            case Left(error)           => error.raiseError
+          }
+        case res @ Response(body, StatusCode.NotFound, _, _, _, _) =>
+          AyahInterpretationNotFound(tafsirId, surahNumber, ayahNumber).raiseError
+        case res: Response[Either[ResponseException[String, io.circe.Error], AyahInterpretation]] =>
+          UnknownError(surahNumber, ayahNumber, res.body.swap.toOption).raiseError
       }
     }
 
