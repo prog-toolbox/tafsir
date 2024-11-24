@@ -9,8 +9,19 @@ lazy val root = (project in file("."))
     scalaJSUseMainModuleInitializer := true
   )
 
+libraryDependencies ++= Seq(
+  "org.scala-js" %%% "scalajs-dom" % "2.8.0",
+  "org.typelevel" %%% "cats-core" % "2.12.0",
+  "org.typelevel" %%% "cats-effect" % "3.5.2",
+  "com.softwaremill.sttp.client3" %%% "cats" % "3.9.0",
+  "com.softwaremill.sttp.client3" %%% "circe" % "3.9.0",
+  "io.circe" %%% "circe-core" % "0.14.5",
+  "io.circe" %%% "circe-generic" % "0.14.5",
+  "io.circe" %%% "circe-parser" % "0.14.5",
+  "org.scalatest" %%% "scalatest" % "3.2.19" % Test
+)
 
-libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "2.8.0"
+dependencyOverrides += "org.portable-scala" %%% "portable-scala-reflect" % "1.1.2"
 
 // Scala.js Settings
 scalacOptions += "-scalajs"
@@ -28,7 +39,9 @@ Compile / fastOptJS / artifactPath := baseDirectory.value / "docs" / "main-dev.j
 // HTML File
 Compile / resourceGenerators += Def.task {
   val indexHtml = baseDirectory.value / "docs" / "index.html"
-  IO.write(indexHtml, """<!DOCTYPE html>
+  IO.write(
+    indexHtml,
+    """<!DOCTYPE html>
   <html>
   <head>
       <meta charset="UTF-8">
@@ -38,6 +51,7 @@ Compile / resourceGenerators += Def.task {
       <script src="main.js"></script>
   </body>
   </html>
-  """)
+  """
+  )
   Seq(indexHtml)
 }.taskValue
