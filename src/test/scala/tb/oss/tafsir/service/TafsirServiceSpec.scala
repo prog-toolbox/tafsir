@@ -13,15 +13,20 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
     Tafsir(2, "Tafsir Al-Jalalayn", "Arabic", "Al-Mahalli and Al-Suyuti", "Tafsir Al-Jalalayn")
   )
 
-  val chapters: List[Chapter] = List(Chapter(1, "Al-Fatihah"), Chapter(2, "Al-Baqarah"), Chapter(3, "Aal-Imrane"))
+  val surahs: List[Surah] = List(Surah(1, "Al-Fatihah"), Surah(2, "Al-Baqarah"), Surah(3, "Aal-Imrane"))
+
+  val ayah: Ayah = Ayah(1, "الفاتحة", 1, "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ")
 
   def client(
     getTafsirListFn: => IO[List[Tafsir]] = IO(tafsirList),
-    getChaptersFn: => IO[List[Chapter]] = IO(chapters)
+    getAyahFn: => IO[Ayah] = IO(ayah),
+    getSurahsFn: => IO[List[Surah]] = IO(surahs)
   ): Client[IO] = new Client[IO] {
     override def getTafsirList: IO[List[Tafsir]] = getTafsirListFn
 
-    override def getChapters: IO[List[Client.Chapter]] = getChaptersFn
+    override def getAyah(surahNumber: Int, ayahNumber: Int): IO[Ayah] = getAyahFn
+
+    override def getSurahs: IO[List[Client.Surah]] = getSurahsFn
   }
 
   test("It should return the tafsir list") {
@@ -41,20 +46,36 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
     }
   }
 
-  test("It should return all chapters") {
-    val service = TafsirService.impl[IO](client(getChaptersFn = IO(chapters)))
-    service.getChapters.unsafeRunAsync {
-      case Right(result) => result should be(chapters)
+  test("It should return all surahs") {
+    val service = TafsirService.impl[IO](client(getSurahsFn = IO(surahs)))
+    service.getSurahs.unsafeRunAsync {
+      case Right(result) => result should be(surahs)
       case Left(error)   => fail("Should not happen")
     }
   }
 
-  test("It should return an error when the client fails while trying to retrieve all chapters") {
+  test("It should return an error when the client fails while trying to retrieve all surahs") {
     val service =
-      TafsirService.impl[IO](client(getChaptersFn = IO.raiseError(new Throwable("Cannot get chapters"))))
-    service.getChapters.unsafeRunAsync {
+      TafsirService.impl[IO](client(getSurahsFn = IO.raiseError(new Throwable("Cannot get surahs"))))
+    service.getSurahs.unsafeRunAsync {
       case Right(result) => fail("Should not happen")
-      case Left(error)   => error.getMessage should be("Cannot get chapters")
+      case Left(error)   => error.getMessage should be("Cannot get surahs")
+    }
+  }
+
+  test("It should return an ayah") {
+    val service = TafsirService.impl[IO](client(getAyahFn = IO(ayah)))
+    service.getAyah(1, 2).unsafeRunAsync {
+      case Right(result) => result should be(ayah)
+      case Left(error)   => fail("Should not happen")
+    }
+  }
+
+  test("It should return an error when the client fails while trying to retrieve an ayah") {
+    val service = TafsirService.impl[IO](client(getAyahFn = IO.raiseError(new Throwable("Cannot get ayah"))))
+    service.getAyah(1, 2).unsafeRunAsync {
+      case Right(result) => fail("Should not happen")
+      case Left(error)   => error.getMessage should be("Cannot get ayah")
     }
   }
 }

@@ -1,18 +1,19 @@
 package tb.oss.tafsir.service
 
 import cats.effect.Async
-import tb.oss.tafsir.service.Client.{Chapter, Tafsir}
+import tb.oss.tafsir.service.Client.*
 
 trait TafsirService[F[_]] {
-  def getChapters: F[List[Chapter]]
+  def getSurahs: F[List[Surah]]
+  def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah]
   def getTafsirList: F[List[Tafsir]]
 }
 
 object TafsirService {
 
-  def impl[F[_]: Async](client: Client[F]): TafsirService[F] =
-    new TafsirService[F] {
-      override def getChapters: F[List[Chapter]] = client.getChapters
-      override def getTafsirList: F[List[Tafsir]] = client.getTafsirList
-    }
+  def impl[F[_]: Async](client: Client[F]): TafsirService[F] = new TafsirService[F] {
+    override def getSurahs: F[List[Surah]] = client.getSurahs
+    override def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah] = client.getAyah(surahNumber, ayahNumber)
+    override def getTafsirList: F[List[Tafsir]] = client.getTafsirList
+  }
 }
