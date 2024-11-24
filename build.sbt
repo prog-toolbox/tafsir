@@ -4,10 +4,7 @@ ThisBuild / scalaVersion := "3.5.2"
 
 lazy val root = (project in file("."))
   .enablePlugins(ScalaJSPlugin)
-  .settings(
-    name := "tafsir",
-    scalaJSUseMainModuleInitializer := true
-  )
+  .settings(name := "tafsir", scalaJSUseMainModuleInitializer := true)
 
 libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "2.8.0",
