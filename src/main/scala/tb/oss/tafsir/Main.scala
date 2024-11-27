@@ -3,7 +3,7 @@ package tb.oss.tafsir
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import org.scalajs.dom
-import tb.oss.tafsir.service.{Client, DetailedAyah, TafsirService}
+import tb.oss.tafsir.service.{Client, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import tb.oss.tafsir.service.Client.AyahInterpretation
@@ -14,10 +14,10 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main {
 
-  def formatDetailedAyah(surahNumber: Int, ayahNumber: Int, ayah: AyahInterpretation): String = {
+  def formatAyahInterpretation(surahNumber: Int, ayahNumber: Int, ayah: AyahInterpretation): String = {
     val fields = List(
-      s"رقم السورة: ${surahNumber}",
-      s"رقم الآية: ${ayahNumber}",
+      s"رقم السورة: $surahNumber",
+      s"رقم الآية: $ayahNumber",
       s"كتاب التفسير: ${ayah.tafsir.`resource_name`}",
       s"التفسير: ${ayah.tafsir.`text`}"
     )
@@ -66,7 +66,7 @@ object Main {
       interpretFuture.onComplete {
         case Success(result) =>
           val resultNode = document.createElement("div")
-          resultNode.innerHTML = formatDetailedAyah(surahNumber, ayahNumber, result)
+          resultNode.innerHTML = formatAyahInterpretation(surahNumber, ayahNumber, result)
           resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
           document.body.appendChild(resultNode)
         case Failure(ex) =>
