@@ -6,6 +6,7 @@ import org.scalajs.dom
 import tb.oss.tafsir.service.{Client, DetailedAyah, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
+import tb.oss.tafsir.service.Client.AyahInterpretation
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
@@ -13,14 +14,12 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main {
 
-  def formatDetailedAyah(ayah: DetailedAyah): String = {
+  def formatDetailedAyah(surahNumber: Int, ayahNumber: Int, ayah: AyahInterpretation): String = {
     val fields = List(
-      s"رقم السورة: ${ayah.surahNumber}",
-      s"اسم السورة: ${ayah.surahName}",
-      s"رقم الآية: ${ayah.ayahNumber}",
-      s"نص الآية: ${ayah.ayahText}",
-      s"كتاب التفسير: ${ayah.tafsirName}",
-      s"التفسير: ${ayah.interpretation}"
+      s"رقم السورة: ${surahNumber}",
+      s"رقم الآية: ${ayahNumber}",
+      s"كتاب التفسير: ${ayah.tafsir.`resource_name`}",
+      s"التفسير: ${ayah.tafsir.`text`}"
     )
 
     fields.map(field => s"• $field").mkString("\n")
@@ -60,14 +59,14 @@ object Main {
       val surahNumber = surahNumberInput.value.toInt
       val ayahNumber = ayahNumberInput.value.toInt
 
-      val interpretIO: IO[DetailedAyah] = service.interpret(tafsirId, surahNumber, ayahNumber)
+      val interpretIO: IO[AyahInterpretation] = service.getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
 
-      val interpretFuture: Future[DetailedAyah] = interpretIO.unsafeToFuture()
+      val interpretFuture: Future[AyahInterpretation] = interpretIO.unsafeToFuture()
 
       interpretFuture.onComplete {
         case Success(result) =>
           val resultNode = document.createElement("div")
-          resultNode.innerHTML = formatDetailedAyah(result)
+          resultNode.innerHTML = formatDetailedAyah(surahNumber, ayahNumber, result)
           resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
           document.body.appendChild(resultNode)
         case Failure(ex) =>
