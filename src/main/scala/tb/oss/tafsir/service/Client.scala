@@ -31,7 +31,8 @@ object Client {
 
   case class AyahInterpretation(tafsir: Tafsir)
 
-  case class Ayah(`hizb_number`: Int, `page_number`: Int, `juz_number`: Int, `text_uthmani`: String)
+  case class Verse(`hizb_number`: Int, `page_number`: Int, `juz_number`: Int, `text_uthmani`: String)
+  case class Ayah(verse: Verse)
 
   case class Tafsir(
     `resource_id`: Int,

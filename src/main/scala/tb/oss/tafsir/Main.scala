@@ -6,7 +6,7 @@ import org.scalajs.dom
 import tb.oss.tafsir.service.{Client, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
-import tb.oss.tafsir.service.Client.AyahInterpretation
+import tb.oss.tafsir.service.Client.{Ayah, AyahInterpretation}
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
@@ -14,12 +14,18 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main {
 
-  def formatAyahInterpretation(surahNumber: Int, ayahNumber: Int, ayah: AyahInterpretation): String = {
+  def formatAyahInterpretation(
+    surahNumber: Int,
+    ayahNumber: Int,
+    ayah: Ayah,
+    ayahInterpretation: AyahInterpretation
+  ): String = {
     val fields = List(
       s"رقم السورة: $surahNumber",
       s"رقم الآية: $ayahNumber",
-      s"كتاب التفسير: ${ayah.tafsir.`resource_name`}",
-      s"التفسير: ${ayah.tafsir.`text`}"
+      s"الآية: ${ayah.verse.`text_uthmani`}",
+      s"كتاب التفسير: ${ayahInterpretation.tafsir.`resource_name`}",
+      s"التفسير: ${ayahInterpretation.tafsir.`text`}"
     )
 
     fields.map(field => s"• $field").mkString("\n")
@@ -61,17 +67,22 @@ object Main {
       val surahNumber = surahNumberInput.value.toInt
       val ayahNumber = ayahNumberInput.value.toInt
 
+      val ayahIO: IO[Ayah] = service.getAyah(surahNumber, ayahNumber)
+      val resultIO: IO[(AyahInterpretation, Ayah)] = service
+        .getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
+        .flatMap(interpretation => ayahIO.map(ayah => (interpretation, ayah)))
+
       val interpretIO: IO[AyahInterpretation] = service.getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
 
       val interpretFuture: Future[AyahInterpretation] = interpretIO.unsafeToFuture()
 
-      interpretFuture.onComplete {
-        case Success(result) =>
+      resultIO.unsafeRunAsync {
+        case Right((interpretation, ayah)) =>
           val resultNode = document.createElement("div")
-          resultNode.innerHTML = formatAyahInterpretation(surahNumber, ayahNumber, result)
+          resultNode.innerHTML = formatAyahInterpretation(surahNumber, ayahNumber, ayah, interpretation)
           resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
           document.body.appendChild(resultNode)
-        case Failure(ex) =>
+        case Left(ex) =>
           val errorNode = document.createElement("div")
           errorNode.textContent = s"Failed to interpret: ${ex.getMessage}"
           document.body.appendChild(errorNode)

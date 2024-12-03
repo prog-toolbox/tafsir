@@ -17066,8 +17066,8 @@ $c_Ltb_oss_tafsir_Main$.prototype.constructor = $c_Ltb_oss_tafsir_Main$;
 function $h_Ltb_oss_tafsir_Main$() {
 }
 $h_Ltb_oss_tafsir_Main$.prototype = $c_Ltb_oss_tafsir_Main$.prototype;
-$c_Ltb_oss_tafsir_Main$.prototype.formatAyahInterpretation__I__I__Ltb_oss_tafsir_service_Client$AyahInterpretation__T = (function(surahNumber, ayahNumber, ayah) {
-  var fields = new $c_sci_$colon$colon(("\u0631\u0642\u0645 \u0627\u0644\u0633\u0648\u0631\u0629: " + surahNumber), new $c_sci_$colon$colon(("\u0631\u0642\u0645 \u0627\u0644\u0622\u064a\u0629: " + ayahNumber), new $c_sci_$colon$colon(("\u0643\u062a\u0627\u0628 \u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_resource_name), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text), $m_sci_Nil$()))));
+$c_Ltb_oss_tafsir_Main$.prototype.formatAyahInterpretation__I__I__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T = (function(surahNumber, ayahNumber, ayah, ayahInterpretation) {
+  var fields = new $c_sci_$colon$colon(("\u0631\u0642\u0645 \u0627\u0644\u0633\u0648\u0631\u0629: " + surahNumber), new $c_sci_$colon$colon(("\u0631\u0642\u0645 \u0627\u0644\u0622\u064a\u0629: " + ayahNumber), new $c_sci_$colon$colon(("\u0627\u0644\u0622\u064a\u0629: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$Ayah__f_verse).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani), new $c_sci_$colon$colon(("\u0643\u062a\u0627\u0628 \u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_resource_name), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text), $m_sci_Nil$())))));
   var f = ((field) => {
     var field$1 = $as_T(field);
     return ("\u2022 " + field$1);
@@ -17125,25 +17125,41 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
     var x$2 = $as_T(ayahNumberInput.value);
     var this$11 = $m_jl_Integer$();
     var ayahNumber = this$11.parseInt__T__I__I(x$2, 10);
+    var ayahIO = $as_Lcats_effect_IO(service.getAyah__I__I__O(surahNumber, ayahNumber));
+    var resultIO = $n($as_Lcats_effect_IO(service.getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((interpretation) => {
+      var interpretation$1 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation(interpretation);
+      return $n(ayahIO).map__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((ayah) => {
+        var ayah$1 = $as_Ltb_oss_tafsir_service_Client$Ayah(ayah);
+        return new $c_T2(interpretation$1, ayah$1);
+      })));
+    })));
     var interpretIO = $as_Lcats_effect_IO(service.getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber));
-    var interpretFuture = $n(interpretIO).unsafeToFuture__Lcats_effect_unsafe_IORuntime__s_concurrent_Future(runtime);
-    $n(interpretFuture).onComplete__F1__s_concurrent_ExecutionContext__V(new $c_sjsr_AnonFunction1(((x$1$1) => {
-      var x$1$2 = $as_s_util_Try(x$1$1);
-      if ((x$1$2 instanceof $c_s_util_Success)) {
-        var result = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n($as_s_util_Success(x$1$2)).s_util_Success__f_value);
-        var resultNode = document.createElement("div");
-        resultNode.innerHTML = $m_Ltb_oss_tafsir_Main$().formatAyahInterpretation__I__I__Ltb_oss_tafsir_service_Client$AyahInterpretation__T(surahNumber, ayahNumber, result);
-        resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;");
-        return document.body.appendChild(resultNode);
+    $n(interpretIO).unsafeToFuture__Lcats_effect_unsafe_IORuntime__s_concurrent_Future(runtime);
+    $n(resultIO).unsafeRunAsync__F1__Lcats_effect_unsafe_IORuntime__V(new $c_sjsr_AnonFunction1(((x$1$1) => {
+      var x$1$2 = $as_s_util_Either(x$1$1);
+      matchResult1: {
+        if ((x$1$2 instanceof $c_s_util_Right)) {
+          var x5 = $as_T2($n($as_s_util_Right(x$1$2)).s_util_Right__f_value);
+          if ((x5 !== null)) {
+            var interpretation$2 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n(x5)._1__O());
+            var ayah$2 = $as_Ltb_oss_tafsir_service_Client$Ayah($n(x5)._2__O());
+            var resultNode = document.createElement("div");
+            resultNode.innerHTML = $m_Ltb_oss_tafsir_Main$().formatAyahInterpretation__I__I__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T(surahNumber, ayahNumber, ayah$2, interpretation$2);
+            resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;");
+            document.body.appendChild(resultNode);
+            break matchResult1;
+          }
+        }
+        if ((x$1$2 instanceof $c_s_util_Left)) {
+          var ex = $as_jl_Throwable($n($as_s_util_Left(x$1$2)).s_util_Left__f_value);
+          var errorNode = document.createElement("div");
+          errorNode.textContent = ("Failed to interpret: " + $n(ex).getMessage__T());
+          document.body.appendChild(errorNode);
+          break matchResult1;
+        }
+        throw new $c_s_MatchError(x$1$2);
       }
-      if ((x$1$2 instanceof $c_s_util_Failure)) {
-        var ex = $n($as_s_util_Failure(x$1$2)).s_util_Failure__f_exception;
-        var errorNode = document.createElement("div");
-        errorNode.textContent = ("Failed to interpret: " + $n(ex).getMessage__T());
-        return document.body.appendChild(errorNode);
-      }
-      throw new $c_s_MatchError(x$1$2);
-    })), $m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor());
+    })), runtime);
   });
 });
 var $d_Ltb_oss_tafsir_Main$ = new $TypeData().initClass($c_Ltb_oss_tafsir_Main$, "tb.oss.tafsir.Main$", ({
@@ -17351,6 +17367,22 @@ $c_Lcats_effect_IO.prototype.void__Lcats_effect_IO = (function() {
 });
 $c_Lcats_effect_IO.prototype.toString__T = (function() {
   return "IO(...)";
+});
+$c_Lcats_effect_IO.prototype.unsafeRunAsync__F1__Lcats_effect_unsafe_IORuntime__V = (function(cb, runtime) {
+  this.unsafeRunFiber__F0__F1__F1__Z__Lcats_effect_unsafe_IORuntime__Lcats_effect_IOFiber(new $c_sjsr_AnonFunction0((() => {
+    var $x_1 = $n(cb);
+    var value = new $c_ju_concurrent_CancellationException("The fiber was canceled");
+    $x_1.apply__O__O(new $c_s_util_Left(value));
+  })), new $c_sjsr_AnonFunction1(((t) => {
+    var t$1 = $as_jl_Throwable(t);
+    if ((!$m_s_util_control_NonFatal$().apply__jl_Throwable__Z(t$1))) {
+      var this$2 = $n(t$1);
+      this$2.printStackTrace__Ljava_io_PrintStream__V($m_jl_System$Streams$().jl_System$Streams$__f_err);
+    }
+    $n(cb).apply__O__O(new $c_s_util_Left(t$1));
+  })), new $c_sjsr_AnonFunction1(((a) => {
+    $n(cb).apply__O__O(new $c_s_util_Right(a));
+  })), true, runtime);
 });
 $c_Lcats_effect_IO.prototype.unsafeToFuture__Lcats_effect_unsafe_IORuntime__s_concurrent_Future = (function(runtime) {
   return $as_s_concurrent_Future($n(this.unsafeToFutureCancelable__Lcats_effect_unsafe_IORuntime__T2(runtime))._1__O());
@@ -25966,20 +25998,20 @@ $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.constructor = $c_Ltb_oss_tafs
 function $h_Ltb_oss_tafsir_service_Client$$anon$1() {
 }
 $h_Ltb_oss_tafsir_service_Client$$anon$1.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype;
-$c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyahInterpretation__I__I__I__O = (function(tafsirId, surahNumber, ayahNumber) {
+$c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyah__I__I__O = (function(surahNumber, ayahNumber) {
   var $x_4 = $n($m_Lsttp_client3_package$().Lsttp_client3_package$__f_basicRequest);
   var this$2 = $m_Lsttp_client3_package$();
-  var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/tafsirs/", "/by_ayah/", ":", ""]));
+  var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/verses/by_key/", ":", "?fields=text_uthmani"]));
   var sc = new $c_s_StringContext(parts);
   var this$3 = new $c_Lsttp_model_UriInterpolator$UriContext(this$2, sc);
-  var args = $m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new $ac_O([tafsirId, surahNumber, ayahNumber]));
+  var args = $m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new $ac_O([surahNumber, ayahNumber]));
   var $x_3 = $x_4.get__Lsttp_model_Uri__Lsttp_client3_RequestT($m_Lsttp_model_UriInterpolator$().interpolate__s_StringContext__sci_Seq__Lsttp_model_Uri(this$3.Lsttp_model_UriInterpolator$UriContext__f_sc, args));
   var this$6 = $m_sci_Map$();
   var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T2.getArrayOf().constr)([new $c_T2("Accept", "application/json")]));
   var this$11 = $n($n($x_3).headers__sci_Map__Lsttp_client3_RequestT(this$6.from__sc_IterableOnce__sci_Map(elems)));
   var this$10 = $m_Lsttp_client3_circe_package$();
   $m_Lio_circe_Decoder$();
-  var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$4();
+  var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$2();
   var evidence$2 = $m_Lsttp_client3_IsOption$False$();
   var ra = $f_Lsttp_client3_circe_SttpCirceApi__asJson__Lio_circe_Decoder__Lsttp_client3_IsOption__Lsttp_client3_ResponseAs(this$10, instance, evidence$2);
   var method = this$11.Lsttp_client3_RequestT__f_method;
@@ -26005,33 +26037,120 @@ $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyahInterpretation__I__I__
     var x$1$1 = $as_Lsttp_client3_Response(x$1);
     if ((x$1$1 !== null)) {
       var this$21 = $n(x$1$1);
-      var x65 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
+      var x48 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
       var this$22 = $n(x$1$1);
-      var x66 = this$22.Lsttp_client3_Response__f_code;
+      var x49 = this$22.Lsttp_client3_Response__f_code;
       $n(x$1$1);
       $n(x$1$1);
       $n(x$1$1);
       $n(x$1$1);
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x66)) {
-        if ((x65 instanceof $c_s_util_Right)) {
-          var interpretation = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n($as_s_util_Right(x65)).s_util_Right__f_value);
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x49)) {
+        if ((x48 instanceof $c_s_util_Right)) {
+          var ayah = $as_Ltb_oss_tafsir_service_Client$Ayah($n($as_s_util_Right(x48)).s_util_Right__f_value);
           $m_Lcats_implicits$();
           var F = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
           $n(F);
           $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Pure(interpretation);
+          return new $c_Lcats_effect_IO$Pure(ayah);
         }
-        if ((x65 instanceof $c_s_util_Left)) {
-          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x65)).s_util_Left__f_value);
+        if ((x48 instanceof $c_s_util_Left)) {
+          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x48)).s_util_Left__f_value);
           $m_Lcats_implicits$();
           var F$1 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
           $n(F$1);
           $m_Lcats_effect_IO$();
           return new $c_Lcats_effect_IO$Error(error);
         }
-        throw new $c_s_MatchError(x65);
+        throw new $c_s_MatchError(x48);
       }
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x66)) {
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x49)) {
+        $m_Lcats_implicits$();
+        var e = new $c_Ltb_oss_tafsir_service_Client$AyahNotFound(surahNumber, ayahNumber);
+        var F$2 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
+        $n(F$2);
+        $m_Lcats_effect_IO$();
+        return new $c_Lcats_effect_IO$Error(e);
+      }
+    }
+    if ((x$1$1 !== null)) {
+      $m_Lcats_implicits$();
+      var response$1 = $n($n($as_s_util_Either($n(x$1$1).Lsttp_client3_Response__f_body)).swap__s_util_Either()).toOption__s_Option();
+      var e$1 = new $c_Ltb_oss_tafsir_service_Client$UnknownError(surahNumber, ayahNumber, response$1);
+      var F$3 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
+      $n(F$3);
+      $m_Lcats_effect_IO$();
+      return new $c_Lcats_effect_IO$Error(e$1);
+    }
+    throw new $c_s_MatchError(x$1$1);
+  }));
+  return $n(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyahInterpretation__I__I__I__O = (function(tafsirId, surahNumber, ayahNumber) {
+  var $x_4 = $n($m_Lsttp_client3_package$().Lsttp_client3_package$__f_basicRequest);
+  var this$2 = $m_Lsttp_client3_package$();
+  var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/tafsirs/", "/by_ayah/", ":", ""]));
+  var sc = new $c_s_StringContext(parts);
+  var this$3 = new $c_Lsttp_model_UriInterpolator$UriContext(this$2, sc);
+  var args = $m_sr_ScalaRunTime$().genericWrapArray__O__sci_ArraySeq(new $ac_O([tafsirId, surahNumber, ayahNumber]));
+  var $x_3 = $x_4.get__Lsttp_model_Uri__Lsttp_client3_RequestT($m_Lsttp_model_UriInterpolator$().interpolate__s_StringContext__sci_Seq__Lsttp_model_Uri(this$3.Lsttp_model_UriInterpolator$UriContext__f_sc, args));
+  var this$6 = $m_sci_Map$();
+  var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T2.getArrayOf().constr)([new $c_T2("Accept", "application/json")]));
+  var this$11 = $n($n($x_3).headers__sci_Map__Lsttp_client3_RequestT(this$6.from__sc_IterableOnce__sci_Map(elems)));
+  var this$10 = $m_Lsttp_client3_circe_package$();
+  $m_Lio_circe_Decoder$();
+  var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$6();
+  var evidence$2 = $m_Lsttp_client3_IsOption$False$();
+  var ra = $f_Lsttp_client3_circe_SttpCirceApi__asJson__Lio_circe_Decoder__Lsttp_client3_IsOption__Lsttp_client3_ResponseAs(this$10, instance, evidence$2);
+  var method = this$11.Lsttp_client3_RequestT__f_method;
+  var uri = this$11.Lsttp_client3_RequestT__f_uri;
+  var body = this$11.Lsttp_client3_RequestT__f_body;
+  var headers = this$11.Lsttp_client3_RequestT__f_headers;
+  var options = this$11.Lsttp_client3_RequestT__f_options;
+  var tags = this$11.Lsttp_client3_RequestT__f_tags;
+  var $x_5 = new $c_Lsttp_client3_RequestT(method, uri, body, headers, ra, options, tags);
+  var fetchOptions = $m_Lsttp_client3_FetchOptions$().Lsttp_client3_FetchOptions$__f_Default;
+  var customizeRequest = $m_Lsttp_client3_FetchBackend$().apply$default$2__F1();
+  var ec = $m_s_concurrent_ExecutionContext$().global__s_concurrent_ExecutionContextExecutor();
+  var $x_2 = new $c_Lsttp_client3_FetchBackend(fetchOptions, customizeRequest, ec);
+  var this$15 = $m_s_$less$colon$less$();
+  var $x_1 = this$15.s_$less$colon$less$__f_singleton;
+  var this$16 = $m_s_$less$colon$less$();
+  var future = $as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton));
+  var response = $m_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$().toAsync$extension__s_concurrent_Future__Lcats_effect_kernel_Async__O(future, this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
+  $m_Lcats_implicits$();
+  var tc = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
+  var this$49 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(response, tc);
+  var f = new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_Lsttp_client3_Response(x$1);
+    if ((x$1$1 !== null)) {
+      var this$21 = $n(x$1$1);
+      var x69 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
+      var this$22 = $n(x$1$1);
+      var x70 = this$22.Lsttp_client3_Response__f_code;
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x70)) {
+        if ((x69 instanceof $c_s_util_Right)) {
+          var interpretation = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n($as_s_util_Right(x69)).s_util_Right__f_value);
+          $m_Lcats_implicits$();
+          var F = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
+          $n(F);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Pure(interpretation);
+        }
+        if ((x69 instanceof $c_s_util_Left)) {
+          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x69)).s_util_Left__f_value);
+          $m_Lcats_implicits$();
+          var F$1 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
+          $n(F$1);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Error(error);
+        }
+        throw new $c_s_MatchError(x69);
+      }
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x70)) {
         $m_Lcats_implicits$();
         var e = new $c_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound(tafsirId, surahNumber, ayahNumber);
         var F$2 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
@@ -26068,6 +26187,9 @@ $c_Ltb_oss_tafsir_service_TafsirService$$anon$1.prototype.constructor = $c_Ltb_o
 function $h_Ltb_oss_tafsir_service_TafsirService$$anon$1() {
 }
 $h_Ltb_oss_tafsir_service_TafsirService$$anon$1.prototype = $c_Ltb_oss_tafsir_service_TafsirService$$anon$1.prototype;
+$c_Ltb_oss_tafsir_service_TafsirService$$anon$1.prototype.getAyah__I__I__O = (function(surahNumber, ayahNumber) {
+  return $n(this.Ltb_oss_tafsir_service_TafsirService$$anon$1__f_client$1).getAyah__I__I__O(surahNumber, ayahNumber);
+});
 $c_Ltb_oss_tafsir_service_TafsirService$$anon$1.prototype.getAyahInterpretation__I__I__I__O = (function(tafsirId, surahNumber, ayahNumber) {
   return $n(this.Ltb_oss_tafsir_service_TafsirService$$anon$1__f_client$1).getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber);
 });
@@ -34166,63 +34288,113 @@ var $d_Lsttp_monad_FutureMonad = new $TypeData().initClass($c_Lsttp_monad_Future
   Lsttp_monad_MonadAsyncError: 1
 }));
 /** @constructor */
-function $c_Ltb_oss_tafsir_service_Client$$anon$7() {
-  this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaults$lzy2 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaultsbitmap$2 = false;
+function $c_Ltb_oss_tafsir_service_Client$$anon$10() {
+  this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaults$lzy4 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaultsbitmap$4 = false;
 }
-$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype = new $h_O();
-$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$7;
+$c_Ltb_oss_tafsir_service_Client$$anon$10.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$10.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$10;
 /** @constructor */
-function $h_Ltb_oss_tafsir_service_Client$$anon$7() {
+function $h_Ltb_oss_tafsir_service_Client$$anon$10() {
 }
-$h_Ltb_oss_tafsir_service_Client$$anon$7.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$7.prototype;
-$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.defaults__s_Product = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaultsbitmap$2)) {
-    var _1 = $m_s_None$();
-    var _2 = $m_s_None$();
-    this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaults$lzy2 = new $c_T2(_1, _2);
-    this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaultsbitmap$2 = true;
-  }
-  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_defaults$lzy2;
-});
-var $d_Ltb_oss_tafsir_service_Client$$anon$7 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$7, "tb.oss.tafsir.service.Client$$anon$7", ({
-  Ltb_oss_tafsir_service_Client$$anon$7: 1,
-  Ljava_io_Serializable: 1,
-  Lio_circe_derivation_Default: 1
-}));
-/** @constructor */
-function $c_Ltb_oss_tafsir_service_Client$$anon$8() {
-  this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaults$lzy3 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaultsbitmap$3 = false;
-}
-$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype = new $h_O();
-$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$8;
-/** @constructor */
-function $h_Ltb_oss_tafsir_service_Client$$anon$8() {
-}
-$h_Ltb_oss_tafsir_service_Client$$anon$8.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$8.prototype;
-$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.defaults__s_Product = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaultsbitmap$3)) {
+$h_Ltb_oss_tafsir_service_Client$$anon$10.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$10.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$10.prototype.defaults__s_Product = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaultsbitmap$4)) {
     var _1 = $m_s_None$();
     var _2 = $m_s_None$();
     var _3 = $m_s_None$();
     var _4 = $m_s_None$();
     var _5 = $m_s_None$();
     var _6 = $m_s_None$();
-    this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaults$lzy3 = new $c_T6(_1, _2, _3, _4, _5, _6);
-    this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaultsbitmap$3 = true;
+    this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaults$lzy4 = new $c_T6(_1, _2, _3, _4, _5, _6);
+    this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaultsbitmap$4 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_defaults$lzy3;
+  return this.Ltb_oss_tafsir_service_Client$$anon$10__f_defaults$lzy4;
 });
-var $d_Ltb_oss_tafsir_service_Client$$anon$8 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$8, "tb.oss.tafsir.service.Client$$anon$8", ({
-  Ltb_oss_tafsir_service_Client$$anon$8: 1,
+var $d_Ltb_oss_tafsir_service_Client$$anon$10 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$10, "tb.oss.tafsir.service.Client$$anon$10", ({
+  Ltb_oss_tafsir_service_Client$$anon$10: 1,
+  Ljava_io_Serializable: 1,
+  Lio_circe_derivation_Default: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$$anon$11() {
+  this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaults$lzy5 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaultsbitmap$5 = false;
+}
+$c_Ltb_oss_tafsir_service_Client$$anon$11.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$11.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$11;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$$anon$11() {
+}
+$h_Ltb_oss_tafsir_service_Client$$anon$11.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$11.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$11.prototype.defaults__s_Product = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaultsbitmap$5)) {
+    var _1 = $m_s_None$();
+    this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaults$lzy5 = new $c_T1(_1);
+    this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaultsbitmap$5 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$11__f_defaults$lzy5;
+});
+var $d_Ltb_oss_tafsir_service_Client$$anon$11 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$11, "tb.oss.tafsir.service.Client$$anon$11", ({
+  Ltb_oss_tafsir_service_Client$$anon$11: 1,
+  Ljava_io_Serializable: 1,
+  Lio_circe_derivation_Default: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$$anon$4() {
+  this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaults$lzy1 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaultsbitmap$1 = false;
+}
+$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$4;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$$anon$4() {
+}
+$h_Ltb_oss_tafsir_service_Client$$anon$4.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$4.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.defaults__s_Product = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaultsbitmap$1)) {
+    var _1 = $m_s_None$();
+    var _2 = $m_s_None$();
+    var _3 = $m_s_None$();
+    var _4 = $m_s_None$();
+    this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaults$lzy1 = new $c_T4(_1, _2, _3, _4);
+    this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaultsbitmap$1 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_defaults$lzy1;
+});
+var $d_Ltb_oss_tafsir_service_Client$$anon$4 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$4, "tb.oss.tafsir.service.Client$$anon$4", ({
+  Ltb_oss_tafsir_service_Client$$anon$4: 1,
+  Ljava_io_Serializable: 1,
+  Lio_circe_derivation_Default: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$$anon$5() {
+  this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaults$lzy2 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaultsbitmap$2 = false;
+}
+$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$5;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$$anon$5() {
+}
+$h_Ltb_oss_tafsir_service_Client$$anon$5.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$5.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.defaults__s_Product = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaultsbitmap$2)) {
+    var _1 = $m_s_None$();
+    this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaults$lzy2 = new $c_T1(_1);
+    this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaultsbitmap$2 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_defaults$lzy2;
+});
+var $d_Ltb_oss_tafsir_service_Client$$anon$5 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$5, "tb.oss.tafsir.service.Client$$anon$5", ({
+  Ltb_oss_tafsir_service_Client$$anon$5: 1,
   Ljava_io_Serializable: 1,
   Lio_circe_derivation_Default: 1
 }));
 /** @constructor */
 function $c_Ltb_oss_tafsir_service_Client$$anon$9() {
-  this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy4 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$4 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy3 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$3 = false;
 }
 $c_Ltb_oss_tafsir_service_Client$$anon$9.prototype = new $h_O();
 $c_Ltb_oss_tafsir_service_Client$$anon$9.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$9;
@@ -34231,18 +34403,46 @@ function $h_Ltb_oss_tafsir_service_Client$$anon$9() {
 }
 $h_Ltb_oss_tafsir_service_Client$$anon$9.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$9.prototype;
 $c_Ltb_oss_tafsir_service_Client$$anon$9.prototype.defaults__s_Product = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$4)) {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$3)) {
     var _1 = $m_s_None$();
-    this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy4 = new $c_T1(_1);
-    this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$4 = true;
+    var _2 = $m_s_None$();
+    this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy3 = new $c_T2(_1, _2);
+    this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaultsbitmap$3 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy4;
+  return this.Ltb_oss_tafsir_service_Client$$anon$9__f_defaults$lzy3;
 });
 var $d_Ltb_oss_tafsir_service_Client$$anon$9 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$9, "tb.oss.tafsir.service.Client$$anon$9", ({
   Ltb_oss_tafsir_service_Client$$anon$9: 1,
   Ljava_io_Serializable: 1,
   Lio_circe_derivation_Default: 1
 }));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$Ayah$() {
+}
+$c_Ltb_oss_tafsir_service_Client$Ayah$.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$Ayah$.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$Ayah$;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$Ayah$() {
+}
+$h_Ltb_oss_tafsir_service_Client$Ayah$.prototype = $c_Ltb_oss_tafsir_service_Client$Ayah$.prototype;
+$c_Ltb_oss_tafsir_service_Client$Ayah$.prototype.toString__T = (function() {
+  return "Ayah";
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah$.prototype.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Ayah = (function(x$0) {
+  return new $c_Ltb_oss_tafsir_service_Client$Ayah($as_Ltb_oss_tafsir_service_Client$Verse($n(x$0).productElement__I__O(0)));
+});
+var $d_Ltb_oss_tafsir_service_Client$Ayah$ = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$Ayah$, "tb.oss.tafsir.service.Client$Ayah$", ({
+  Ltb_oss_tafsir_service_Client$Ayah$: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1
+}));
+var $n_Ltb_oss_tafsir_service_Client$Ayah$;
+function $m_Ltb_oss_tafsir_service_Client$Ayah$() {
+  if ((!$n_Ltb_oss_tafsir_service_Client$Ayah$)) {
+    $n_Ltb_oss_tafsir_service_Client$Ayah$ = new $c_Ltb_oss_tafsir_service_Client$Ayah$();
+  }
+  return $n_Ltb_oss_tafsir_service_Client$Ayah$;
+}
 /** @constructor */
 function $c_Ltb_oss_tafsir_service_Client$AyahInterpretation$() {
 }
@@ -34323,6 +34523,33 @@ function $m_Ltb_oss_tafsir_service_Client$TafsirName$() {
     $n_Ltb_oss_tafsir_service_Client$TafsirName$ = new $c_Ltb_oss_tafsir_service_Client$TafsirName$();
   }
   return $n_Ltb_oss_tafsir_service_Client$TafsirName$;
+}
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$Verse$() {
+}
+$c_Ltb_oss_tafsir_service_Client$Verse$.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$Verse$.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$Verse$;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$Verse$() {
+}
+$h_Ltb_oss_tafsir_service_Client$Verse$.prototype = $c_Ltb_oss_tafsir_service_Client$Verse$.prototype;
+$c_Ltb_oss_tafsir_service_Client$Verse$.prototype.toString__T = (function() {
+  return "Verse";
+});
+$c_Ltb_oss_tafsir_service_Client$Verse$.prototype.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Verse = (function(x$0) {
+  return new $c_Ltb_oss_tafsir_service_Client$Verse($uI($n(x$0).productElement__I__O(0)), $uI($n(x$0).productElement__I__O(1)), $uI($n(x$0).productElement__I__O(2)), $as_T($n(x$0).productElement__I__O(3)));
+});
+var $d_Ltb_oss_tafsir_service_Client$Verse$ = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$Verse$, "tb.oss.tafsir.service.Client$Verse$", ({
+  Ltb_oss_tafsir_service_Client$Verse$: 1,
+  s_deriving_Mirror: 1,
+  s_deriving_Mirror$Product: 1
+}));
+var $n_Ltb_oss_tafsir_service_Client$Verse$;
+function $m_Ltb_oss_tafsir_service_Client$Verse$() {
+  if ((!$n_Ltb_oss_tafsir_service_Client$Verse$)) {
+    $n_Ltb_oss_tafsir_service_Client$Verse$ = new $c_Ltb_oss_tafsir_service_Client$Verse$();
+  }
+  return $n_Ltb_oss_tafsir_service_Client$Verse$;
 }
 function $p_Lcats_Eval$__addToMemo$1__Lcats_Eval$Memoize__F1($thiz, m) {
   return new $c_sjsr_AnonFunction1(((a) => {
@@ -42911,6 +43138,71 @@ var $d_Lsttp_model_internal_FastCharSet = new $TypeData().initClass($c_Lsttp_mod
   Ljava_io_Serializable: 1
 }));
 /** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$Ayah(verse) {
+  this.Ltb_oss_tafsir_service_Client$Ayah__f_verse = null;
+  this.Ltb_oss_tafsir_service_Client$Ayah__f_verse = verse;
+}
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$Ayah;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$Ayah() {
+}
+$h_Ltb_oss_tafsir_service_Client$Ayah.prototype = $c_Ltb_oss_tafsir_service_Client$Ayah.prototype;
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this);
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false);
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true;
+  } else if ((x$0 instanceof $c_Ltb_oss_tafsir_service_Client$Ayah)) {
+    var x$0$2 = $as_Ltb_oss_tafsir_service_Client$Ayah(x$0);
+    var x = this.Ltb_oss_tafsir_service_Client$Ayah__f_verse;
+    var x$2 = $n(x$0$2).Ltb_oss_tafsir_service_Client$Ayah__f_verse;
+    if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
+      $n(x$0$2);
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this);
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.productArity__I = (function() {
+  return 1;
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.productPrefix__T = (function() {
+  return "Ayah";
+});
+$c_Ltb_oss_tafsir_service_Client$Ayah.prototype.productElement__I__O = (function(n) {
+  if ((n === 0)) {
+    return this.Ltb_oss_tafsir_service_Client$Ayah__f_verse;
+  }
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
+});
+function $as_Ltb_oss_tafsir_service_Client$Ayah(obj) {
+  return (((obj instanceof $c_Ltb_oss_tafsir_service_Client$Ayah) || (obj === null)) ? obj : $throwClassCastException(obj, "tb.oss.tafsir.service.Client$Ayah"));
+}
+function $isArrayOf_Ltb_oss_tafsir_service_Client$Ayah(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltb_oss_tafsir_service_Client$Ayah)));
+}
+function $asArrayOf_Ltb_oss_tafsir_service_Client$Ayah(obj, depth) {
+  return (($isArrayOf_Ltb_oss_tafsir_service_Client$Ayah(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltb.oss.tafsir.service.Client$Ayah;", depth));
+}
+var $d_Ltb_oss_tafsir_service_Client$Ayah = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$Ayah, "tb.oss.tafsir.service.Client$Ayah", ({
+  Ltb_oss_tafsir_service_Client$Ayah: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+}));
+/** @constructor */
 function $c_Ltb_oss_tafsir_service_Client$AyahInterpretation(tafsir) {
   this.Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir = null;
   this.Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir = tafsir;
@@ -43165,6 +43457,104 @@ function $asArrayOf_Ltb_oss_tafsir_service_Client$TafsirName(obj, depth) {
 }
 var $d_Ltb_oss_tafsir_service_Client$TafsirName = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$TafsirName, "tb.oss.tafsir.service.Client$TafsirName", ({
   Ltb_oss_tafsir_service_Client$TafsirName: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$Verse(hizb_number, page_number, juz_number, text_uthmani) {
+  this.Ltb_oss_tafsir_service_Client$Verse__f_hizb_number = 0;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_page_number = 0;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_juz_number = 0;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani = null;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_hizb_number = hizb_number;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_page_number = page_number;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_juz_number = juz_number;
+  this.Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani = text_uthmani;
+}
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$Verse;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$Verse() {
+}
+$h_Ltb_oss_tafsir_service_Client$Verse.prototype = $c_Ltb_oss_tafsir_service_Client$Verse.prototype;
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this);
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.hashCode__I = (function() {
+  var acc = (-889275714);
+  var hash = acc;
+  var data = $f_T__hashCode__I("Verse");
+  acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+  var hash$1 = acc;
+  var data$1 = this.Ltb_oss_tafsir_service_Client$Verse__f_hizb_number;
+  acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+  var hash$2 = acc;
+  var data$2 = this.Ltb_oss_tafsir_service_Client$Verse__f_page_number;
+  acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+  var hash$3 = acc;
+  var data$3 = this.Ltb_oss_tafsir_service_Client$Verse__f_juz_number;
+  acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
+  var hash$4 = acc;
+  var x = this.Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani;
+  var data$4 = $m_sr_Statics$().anyHash__O__I(x);
+  acc = $m_sr_Statics$().mix__I__I__I(hash$4, data$4);
+  var hash$5 = acc;
+  return $m_sr_Statics$().finalizeHash__I__I__I(hash$5, 4);
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true;
+  } else if ((x$0 instanceof $c_Ltb_oss_tafsir_service_Client$Verse)) {
+    var x$0$2 = $as_Ltb_oss_tafsir_service_Client$Verse(x$0);
+    return (((((this.Ltb_oss_tafsir_service_Client$Verse__f_hizb_number === $n(x$0$2).Ltb_oss_tafsir_service_Client$Verse__f_hizb_number) && (this.Ltb_oss_tafsir_service_Client$Verse__f_page_number === $n(x$0$2).Ltb_oss_tafsir_service_Client$Verse__f_page_number)) && (this.Ltb_oss_tafsir_service_Client$Verse__f_juz_number === $n(x$0$2).Ltb_oss_tafsir_service_Client$Verse__f_juz_number)) && (this.Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani === $n(x$0$2).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani)) && ($n(x$0$2), true));
+  } else {
+    return false;
+  }
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this);
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.productArity__I = (function() {
+  return 4;
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.productPrefix__T = (function() {
+  return "Verse";
+});
+$c_Ltb_oss_tafsir_service_Client$Verse.prototype.productElement__I__O = (function(n) {
+  switch (n) {
+    case 0: {
+      return this.Ltb_oss_tafsir_service_Client$Verse__f_hizb_number;
+      break;
+    }
+    case 1: {
+      return this.Ltb_oss_tafsir_service_Client$Verse__f_page_number;
+      break;
+    }
+    case 2: {
+      return this.Ltb_oss_tafsir_service_Client$Verse__f_juz_number;
+      break;
+    }
+    case 3: {
+      return this.Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani;
+      break;
+    }
+    default: {
+      throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
+    }
+  }
+});
+function $as_Ltb_oss_tafsir_service_Client$Verse(obj) {
+  return (((obj instanceof $c_Ltb_oss_tafsir_service_Client$Verse) || (obj === null)) ? obj : $throwClassCastException(obj, "tb.oss.tafsir.service.Client$Verse"));
+}
+function $isArrayOf_Ltb_oss_tafsir_service_Client$Verse(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltb_oss_tafsir_service_Client$Verse)));
+}
+function $asArrayOf_Ltb_oss_tafsir_service_Client$Verse(obj, depth) {
+  return (($isArrayOf_Ltb_oss_tafsir_service_Client$Verse(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltb.oss.tafsir.service.Client$Verse;", depth));
+}
+var $d_Ltb_oss_tafsir_service_Client$Verse = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$Verse, "tb.oss.tafsir.service.Client$Verse", ({
+  Ltb_oss_tafsir_service_Client$Verse: 1,
   s_Equals: 1,
   s_Product: 1,
   Ljava_io_Serializable: 1
@@ -53076,153 +53466,146 @@ var $d_Lsttp_model_UriInterpolator$StringToken = new $TypeData().initClass($c_Ls
   Ljava_io_Serializable: 1
 }));
 /** @constructor */
-function $c_Ltb_oss_tafsir_service_Client$$anon$4() {
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_name = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabels$lzy2 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabelsbitmap$2 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecoders$lzy4 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecodersbitmap$4 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaults$lzy4 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaultsbitmap$4 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
-  this.Ltb_oss_tafsir_service_Client$$anon$4__f_name = "AyahInterpretation";
+function $c_Ltb_oss_tafsir_service_Client$$anon$2() {
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_name = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabels$lzy1 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabelsbitmap$1 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecoders$lzy2 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecodersbitmap$2 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaults$lzy2 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaultsbitmap$2 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
+  this.Ltb_oss_tafsir_service_Client$$anon$2__f_name = "Ayah";
 }
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype = new $h_O();
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$4;
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$2;
 /** @constructor */
-function $h_Ltb_oss_tafsir_service_Client$$anon$4() {
+function $h_Ltb_oss_tafsir_service_Client$$anon$2() {
 }
-$h_Ltb_oss_tafsir_service_Client$$anon$4.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$4.prototype;
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
+$h_Ltb_oss_tafsir_service_Client$$anon$2.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$2.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
   return $f_Lio_circe_Decoder__tryDecode__Lio_circe_ACursor__s_util_Either(this, c);
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
-  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_io$circe$derivation$ConfiguredDecoder$$conf;
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$2__f_io$circe$derivation$ConfiguredDecoder$$conf;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.name__T = (function() {
-  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_name;
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.name__T = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$2__f_name;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.elemLabels__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabelsbitmap$2)) {
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.elemLabels__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabelsbitmap$1)) {
     var this$1 = $m_sci_Nil$();
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabels$lzy2 = new $c_sci_$colon$colon("tafsir", this$1);
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabelsbitmap$2 = true;
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabels$lzy1 = new $c_sci_$colon$colon("verse", this$1);
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabelsbitmap$1 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemLabels$lzy2;
+  return this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemLabels$lzy1;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.elemDecoders__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecodersbitmap$4)) {
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.elemDecoders__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecodersbitmap$2)) {
     $m_Lio_circe_Decoder$();
-    var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$5();
+    var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$3();
     var this$3 = $m_sci_Nil$();
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecoders$lzy4 = new $c_sci_$colon$colon(instance, this$3);
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecodersbitmap$4 = true;
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecoders$lzy2 = new $c_sci_$colon$colon(instance, this$3);
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecodersbitmap$2 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDecoders$lzy4;
+  return this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDecoders$lzy2;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaultsbitmap$4)) {
-    var x$proxy4 = new $c_Ltb_oss_tafsir_service_Client$$anon$9();
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaults$lzy4 = x$proxy4;
-    this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaultsbitmap$4 = true;
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaultsbitmap$2)) {
+    var x$proxy2 = new $c_Ltb_oss_tafsir_service_Client$$anon$5();
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaults$lzy2 = x$proxy2;
+    this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaultsbitmap$2 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$4__f_elemDefaults$lzy4;
+  return this.Ltb_oss_tafsir_service_Client$$anon$2__f_elemDefaults$lzy2;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$4.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
-  var \u03b4scrutinee58 = $m_Ltb_oss_tafsir_service_Client$AyahInterpretation$();
+$c_Ltb_oss_tafsir_service_Client$$anon$2.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
+  var \u03b4scrutinee24 = $m_Ltb_oss_tafsir_service_Client$Ayah$();
   var fromProduct = new $c_sjsr_AnonFunction1(((p) => {
     var p$1 = $as_s_Product(p);
-    return \u03b4scrutinee58.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$AyahInterpretation(p$1);
+    return \u03b4scrutinee24.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Ayah(p$1);
   }));
   return $f_Lio_circe_derivation_ConfiguredDecoder__decodeProduct__Lio_circe_HCursor__F1__s_util_Either(this, c, fromProduct);
 });
-var $d_Ltb_oss_tafsir_service_Client$$anon$4 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$4, "tb.oss.tafsir.service.Client$$anon$4", ({
-  Ltb_oss_tafsir_service_Client$$anon$4: 1,
+var $d_Ltb_oss_tafsir_service_Client$$anon$2 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$2, "tb.oss.tafsir.service.Client$$anon$2", ({
+  Ltb_oss_tafsir_service_Client$$anon$2: 1,
   Ljava_io_Serializable: 1,
   Lio_circe_Decoder: 1,
   Lio_circe_derivation_ConfiguredDecoder: 1,
   Lio_circe_derivation_SumOrProduct: 1
 }));
 /** @constructor */
-function $c_Ltb_oss_tafsir_service_Client$$anon$5() {
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_name = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabels$lzy3 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabelsbitmap$3 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecoders$lzy3 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecodersbitmap$3 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaults$lzy3 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaultsbitmap$3 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
-  this.Ltb_oss_tafsir_service_Client$$anon$5__f_name = "Tafsir";
+function $c_Ltb_oss_tafsir_service_Client$$anon$3() {
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_name = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabels$lzy2 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabelsbitmap$2 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecoders$lzy1 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecodersbitmap$1 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaults$lzy1 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaultsbitmap$1 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
+  this.Ltb_oss_tafsir_service_Client$$anon$3__f_name = "Verse";
 }
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype = new $h_O();
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$5;
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$3;
 /** @constructor */
-function $h_Ltb_oss_tafsir_service_Client$$anon$5() {
+function $h_Ltb_oss_tafsir_service_Client$$anon$3() {
 }
-$h_Ltb_oss_tafsir_service_Client$$anon$5.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$5.prototype;
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
+$h_Ltb_oss_tafsir_service_Client$$anon$3.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$3.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
   return $f_Lio_circe_Decoder__tryDecode__Lio_circe_ACursor__s_util_Either(this, c);
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
-  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_io$circe$derivation$ConfiguredDecoder$$conf;
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$3__f_io$circe$derivation$ConfiguredDecoder$$conf;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.name__T = (function() {
-  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_name;
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.name__T = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$3__f_name;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.elemLabels__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabelsbitmap$3)) {
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.elemLabels__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabelsbitmap$2)) {
     var this$1 = $m_sci_Nil$();
-    var this$2 = new $c_sci_$colon$colon("text", this$1);
-    var this$3 = new $c_sci_$colon$colon("translated_name", this$2);
-    var this$4 = new $c_sci_$colon$colon("slug", this$3);
-    var this$5 = new $c_sci_$colon$colon("language_id", this$4);
-    var this$6 = new $c_sci_$colon$colon("resource_name", this$5);
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabels$lzy3 = new $c_sci_$colon$colon("resource_id", this$6);
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabelsbitmap$3 = true;
+    var this$2 = new $c_sci_$colon$colon("text_uthmani", this$1);
+    var this$3 = new $c_sci_$colon$colon("juz_number", this$2);
+    var this$4 = new $c_sci_$colon$colon("page_number", this$3);
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabels$lzy2 = new $c_sci_$colon$colon("hizb_number", this$4);
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabelsbitmap$2 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemLabels$lzy3;
+  return this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemLabels$lzy2;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.elemDecoders__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecodersbitmap$3)) {
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.elemDecoders__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecodersbitmap$1)) {
     var decodeA = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeInt;
-    var decodeA$2 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    var decodeA$2 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeInt;
     var decodeA$3 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeInt;
     var decodeA$4 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
-    $m_Lio_circe_Decoder$();
-    var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$6();
-    var decodeA$6 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
-    var this$3 = $m_sci_Nil$();
-    var this$4 = new $c_sci_$colon$colon(decodeA$6, this$3);
-    var this$5 = new $c_sci_$colon$colon(instance, this$4);
-    var this$6 = new $c_sci_$colon$colon(decodeA$4, this$5);
-    var this$7 = new $c_sci_$colon$colon(decodeA$3, this$6);
-    var this$8 = new $c_sci_$colon$colon(decodeA$2, this$7);
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecoders$lzy3 = new $c_sci_$colon$colon(decodeA, this$8);
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecodersbitmap$3 = true;
+    var this$1 = $m_sci_Nil$();
+    var this$2 = new $c_sci_$colon$colon(decodeA$4, this$1);
+    var this$3 = new $c_sci_$colon$colon(decodeA$3, this$2);
+    var this$4 = new $c_sci_$colon$colon(decodeA$2, this$3);
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecoders$lzy1 = new $c_sci_$colon$colon(decodeA, this$4);
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecodersbitmap$1 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDecoders$lzy3;
+  return this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDecoders$lzy1;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaultsbitmap$3)) {
-    var x$proxy3 = new $c_Ltb_oss_tafsir_service_Client$$anon$8();
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaults$lzy3 = x$proxy3;
-    this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaultsbitmap$3 = true;
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaultsbitmap$1)) {
+    var x$proxy1 = new $c_Ltb_oss_tafsir_service_Client$$anon$4();
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaults$lzy1 = x$proxy1;
+    this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaultsbitmap$1 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$5__f_elemDefaults$lzy3;
+  return this.Ltb_oss_tafsir_service_Client$$anon$3__f_elemDefaults$lzy1;
 });
-$c_Ltb_oss_tafsir_service_Client$$anon$5.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
-  var \u03b4scrutinee54 = $m_Ltb_oss_tafsir_service_Client$Tafsir$();
+$c_Ltb_oss_tafsir_service_Client$$anon$3.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
+  var \u03b4scrutinee20 = $m_Ltb_oss_tafsir_service_Client$Verse$();
   var fromProduct = new $c_sjsr_AnonFunction1(((p) => {
     var p$1 = $as_s_Product(p);
-    return \u03b4scrutinee54.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Tafsir(p$1);
+    return \u03b4scrutinee20.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Verse(p$1);
   }));
   return $f_Lio_circe_derivation_ConfiguredDecoder__decodeProduct__Lio_circe_HCursor__F1__s_util_Either(this, c, fromProduct);
 });
-var $d_Ltb_oss_tafsir_service_Client$$anon$5 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$5, "tb.oss.tafsir.service.Client$$anon$5", ({
-  Ltb_oss_tafsir_service_Client$$anon$5: 1,
+var $d_Ltb_oss_tafsir_service_Client$$anon$3 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$3, "tb.oss.tafsir.service.Client$$anon$3", ({
+  Ltb_oss_tafsir_service_Client$$anon$3: 1,
   Ljava_io_Serializable: 1,
   Lio_circe_Decoder: 1,
   Lio_circe_derivation_ConfiguredDecoder: 1,
@@ -53232,14 +53615,14 @@ var $d_Ltb_oss_tafsir_service_Client$$anon$5 = new $TypeData().initClass($c_Ltb_
 function $c_Ltb_oss_tafsir_service_Client$$anon$6() {
   this.Ltb_oss_tafsir_service_Client$$anon$6__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
   this.Ltb_oss_tafsir_service_Client$$anon$6__f_name = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy4 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$4 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy2 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$2 = false;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy2 = null;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$2 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy3 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$3 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy5 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$5 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy5 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$5 = false;
   this.Ltb_oss_tafsir_service_Client$$anon$6__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
-  this.Ltb_oss_tafsir_service_Client$$anon$6__f_name = "TafsirName";
+  this.Ltb_oss_tafsir_service_Client$$anon$6__f_name = "AyahInterpretation";
 }
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype = new $h_O();
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$6;
@@ -53257,43 +53640,196 @@ $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.name__T = (function() {
   return this.Ltb_oss_tafsir_service_Client$$anon$6__f_name;
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.elemLabels__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$4)) {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$3)) {
     var this$1 = $m_sci_Nil$();
-    var this$2 = new $c_sci_$colon$colon("language_name", this$1);
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy4 = new $c_sci_$colon$colon("name", this$2);
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$4 = true;
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy3 = new $c_sci_$colon$colon("tafsir", this$1);
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabelsbitmap$3 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy4;
+  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemLabels$lzy3;
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.elemDecoders__sci_List = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$2)) {
-    var decodeA = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
-    var decodeA$2 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
-    var this$1 = $m_sci_Nil$();
-    var this$2 = new $c_sci_$colon$colon(decodeA$2, this$1);
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy2 = new $c_sci_$colon$colon(decodeA, this$2);
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$2 = true;
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$5)) {
+    $m_Lio_circe_Decoder$();
+    var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$7();
+    var this$3 = $m_sci_Nil$();
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy5 = new $c_sci_$colon$colon(instance, this$3);
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecodersbitmap$5 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy2;
+  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDecoders$lzy5;
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
-  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$2)) {
-    var x$proxy2 = new $c_Ltb_oss_tafsir_service_Client$$anon$7();
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy2 = x$proxy2;
-    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$2 = true;
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$5)) {
+    var x$proxy5 = new $c_Ltb_oss_tafsir_service_Client$$anon$11();
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy5 = x$proxy5;
+    this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaultsbitmap$5 = true;
   }
-  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy2;
+  return this.Ltb_oss_tafsir_service_Client$$anon$6__f_elemDefaults$lzy5;
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$6.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
-  var \u03b4scrutinee48 = $m_Ltb_oss_tafsir_service_Client$TafsirName$();
+  var \u03b4scrutinee66 = $m_Ltb_oss_tafsir_service_Client$AyahInterpretation$();
   var fromProduct = new $c_sjsr_AnonFunction1(((p) => {
     var p$1 = $as_s_Product(p);
-    return \u03b4scrutinee48.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$TafsirName(p$1);
+    return \u03b4scrutinee66.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$AyahInterpretation(p$1);
   }));
   return $f_Lio_circe_derivation_ConfiguredDecoder__decodeProduct__Lio_circe_HCursor__F1__s_util_Either(this, c, fromProduct);
 });
 var $d_Ltb_oss_tafsir_service_Client$$anon$6 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$6, "tb.oss.tafsir.service.Client$$anon$6", ({
   Ltb_oss_tafsir_service_Client$$anon$6: 1,
+  Ljava_io_Serializable: 1,
+  Lio_circe_Decoder: 1,
+  Lio_circe_derivation_ConfiguredDecoder: 1,
+  Lio_circe_derivation_SumOrProduct: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$$anon$7() {
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_name = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabels$lzy4 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabelsbitmap$4 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecoders$lzy4 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecodersbitmap$4 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaults$lzy4 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaultsbitmap$4 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
+  this.Ltb_oss_tafsir_service_Client$$anon$7__f_name = "Tafsir";
+}
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$7;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$$anon$7() {
+}
+$h_Ltb_oss_tafsir_service_Client$$anon$7.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$7.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
+  return $f_Lio_circe_Decoder__tryDecode__Lio_circe_ACursor__s_util_Either(this, c);
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_io$circe$derivation$ConfiguredDecoder$$conf;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.name__T = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_name;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.elemLabels__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabelsbitmap$4)) {
+    var this$1 = $m_sci_Nil$();
+    var this$2 = new $c_sci_$colon$colon("text", this$1);
+    var this$3 = new $c_sci_$colon$colon("translated_name", this$2);
+    var this$4 = new $c_sci_$colon$colon("slug", this$3);
+    var this$5 = new $c_sci_$colon$colon("language_id", this$4);
+    var this$6 = new $c_sci_$colon$colon("resource_name", this$5);
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabels$lzy4 = new $c_sci_$colon$colon("resource_id", this$6);
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabelsbitmap$4 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemLabels$lzy4;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.elemDecoders__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecodersbitmap$4)) {
+    var decodeA = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeInt;
+    var decodeA$2 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    var decodeA$3 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeInt;
+    var decodeA$4 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    $m_Lio_circe_Decoder$();
+    var instance = new $c_Ltb_oss_tafsir_service_Client$$anon$8();
+    var decodeA$6 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    var this$3 = $m_sci_Nil$();
+    var this$4 = new $c_sci_$colon$colon(decodeA$6, this$3);
+    var this$5 = new $c_sci_$colon$colon(instance, this$4);
+    var this$6 = new $c_sci_$colon$colon(decodeA$4, this$5);
+    var this$7 = new $c_sci_$colon$colon(decodeA$3, this$6);
+    var this$8 = new $c_sci_$colon$colon(decodeA$2, this$7);
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecoders$lzy4 = new $c_sci_$colon$colon(decodeA, this$8);
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecodersbitmap$4 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDecoders$lzy4;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaultsbitmap$4)) {
+    var x$proxy4 = new $c_Ltb_oss_tafsir_service_Client$$anon$10();
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaults$lzy4 = x$proxy4;
+    this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaultsbitmap$4 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$7__f_elemDefaults$lzy4;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$7.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
+  var \u03b4scrutinee62 = $m_Ltb_oss_tafsir_service_Client$Tafsir$();
+  var fromProduct = new $c_sjsr_AnonFunction1(((p) => {
+    var p$1 = $as_s_Product(p);
+    return \u03b4scrutinee62.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$Tafsir(p$1);
+  }));
+  return $f_Lio_circe_derivation_ConfiguredDecoder__decodeProduct__Lio_circe_HCursor__F1__s_util_Either(this, c, fromProduct);
+});
+var $d_Ltb_oss_tafsir_service_Client$$anon$7 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$7, "tb.oss.tafsir.service.Client$$anon$7", ({
+  Ltb_oss_tafsir_service_Client$$anon$7: 1,
+  Ljava_io_Serializable: 1,
+  Lio_circe_Decoder: 1,
+  Lio_circe_derivation_ConfiguredDecoder: 1,
+  Lio_circe_derivation_SumOrProduct: 1
+}));
+/** @constructor */
+function $c_Ltb_oss_tafsir_service_Client$$anon$8() {
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_io$circe$derivation$ConfiguredDecoder$$conf = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_name = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabels$lzy5 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabelsbitmap$5 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecoders$lzy3 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecodersbitmap$3 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaults$lzy3 = null;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaultsbitmap$3 = false;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_io$circe$derivation$ConfiguredDecoder$$conf = $m_Lio_circe_derivation_Configuration$().Lio_circe_derivation_Configuration$__f_default;
+  this.Ltb_oss_tafsir_service_Client$$anon$8__f_name = "TafsirName";
+}
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype = new $h_O();
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.constructor = $c_Ltb_oss_tafsir_service_Client$$anon$8;
+/** @constructor */
+function $h_Ltb_oss_tafsir_service_Client$$anon$8() {
+}
+$h_Ltb_oss_tafsir_service_Client$$anon$8.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$8.prototype;
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.tryDecode__Lio_circe_ACursor__s_util_Either = (function(c) {
+  return $f_Lio_circe_Decoder__tryDecode__Lio_circe_ACursor__s_util_Either(this, c);
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.io$circe$derivation$ConfiguredDecoder$$conf__Lio_circe_derivation_Configuration = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_io$circe$derivation$ConfiguredDecoder$$conf;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.name__T = (function() {
+  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_name;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.elemLabels__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabelsbitmap$5)) {
+    var this$1 = $m_sci_Nil$();
+    var this$2 = new $c_sci_$colon$colon("language_name", this$1);
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabels$lzy5 = new $c_sci_$colon$colon("name", this$2);
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabelsbitmap$5 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemLabels$lzy5;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.elemDecoders__sci_List = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecodersbitmap$3)) {
+    var decodeA = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    var decodeA$2 = $m_Lio_circe_Decoder$().Lio_circe_Decoder$__f_decodeString;
+    var this$1 = $m_sci_Nil$();
+    var this$2 = new $c_sci_$colon$colon(decodeA$2, this$1);
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecoders$lzy3 = new $c_sci_$colon$colon(decodeA, this$2);
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecodersbitmap$3 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDecoders$lzy3;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.elemDefaults__Lio_circe_derivation_Default = (function() {
+  if ((!this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaultsbitmap$3)) {
+    var x$proxy3 = new $c_Ltb_oss_tafsir_service_Client$$anon$9();
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaults$lzy3 = x$proxy3;
+    this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaultsbitmap$3 = true;
+  }
+  return this.Ltb_oss_tafsir_service_Client$$anon$8__f_elemDefaults$lzy3;
+});
+$c_Ltb_oss_tafsir_service_Client$$anon$8.prototype.apply__Lio_circe_HCursor__s_util_Either = (function(c) {
+  var \u03b4scrutinee56 = $m_Ltb_oss_tafsir_service_Client$TafsirName$();
+  var fromProduct = new $c_sjsr_AnonFunction1(((p) => {
+    var p$1 = $as_s_Product(p);
+    return \u03b4scrutinee56.fromProduct__s_Product__Ltb_oss_tafsir_service_Client$TafsirName(p$1);
+  }));
+  return $f_Lio_circe_derivation_ConfiguredDecoder__decodeProduct__Lio_circe_HCursor__F1__s_util_Either(this, c, fromProduct);
+});
+var $d_Ltb_oss_tafsir_service_Client$$anon$8 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$8, "tb.oss.tafsir.service.Client$$anon$8", ({
+  Ltb_oss_tafsir_service_Client$$anon$8: 1,
   Ljava_io_Serializable: 1,
   Lio_circe_Decoder: 1,
   Lio_circe_derivation_ConfiguredDecoder: 1,
@@ -53378,6 +53914,75 @@ function $asArrayOf_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound(obj
 }
 var $d_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound, "tb.oss.tafsir.service.Client$AyahInterpretationNotFound", ({
   Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound: 1,
+  jl_Throwable: 1,
+  Ljava_io_Serializable: 1,
+  s_Equals: 1,
+  s_Product: 1
+}));
+class $c_Ltb_oss_tafsir_service_Client$AyahNotFound extends $c_jl_Throwable {
+  constructor(surahNumber, ayahNumber) {
+    super();
+    this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber = 0;
+    this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber = 0;
+    this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber = surahNumber;
+    this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber = ayahNumber;
+    var s = (((("Ayah '" + ayahNumber) + "' of surah '") + surahNumber) + "' was not found");
+    $ct_jl_Throwable__T__jl_Throwable__Z__Z__(this, s, null, true, true);
+  }
+  productIterator__sc_Iterator() {
+    return new $c_s_Product$$anon$1(this);
+  }
+  hashCode__I() {
+    var acc = (-889275714);
+    var hash = acc;
+    var data = $f_T__hashCode__I("AyahNotFound");
+    acc = $m_sr_Statics$().mix__I__I__I(hash, data);
+    var hash$1 = acc;
+    var data$1 = this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber;
+    acc = $m_sr_Statics$().mix__I__I__I(hash$1, data$1);
+    var hash$2 = acc;
+    var data$2 = this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber;
+    acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
+    var hash$3 = acc;
+    return $m_sr_Statics$().finalizeHash__I__I__I(hash$3, 2);
+  }
+  equals__O__Z(x$0) {
+    if ((this === x$0)) {
+      return true;
+    } else if ((x$0 instanceof $c_Ltb_oss_tafsir_service_Client$AyahNotFound)) {
+      var x$0$2 = $as_Ltb_oss_tafsir_service_Client$AyahNotFound(x$0);
+      return (((this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber) && (this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber)) && ($n(x$0$2), true));
+    } else {
+      return false;
+    }
+  }
+  productArity__I() {
+    return 2;
+  }
+  productPrefix__T() {
+    return "AyahNotFound";
+  }
+  productElement__I__O(n) {
+    if ((n === 0)) {
+      return this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_surahNumber;
+    }
+    if ((n === 1)) {
+      return this.Ltb_oss_tafsir_service_Client$AyahNotFound__f_ayahNumber;
+    }
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
+  }
+}
+function $as_Ltb_oss_tafsir_service_Client$AyahNotFound(obj) {
+  return (((obj instanceof $c_Ltb_oss_tafsir_service_Client$AyahNotFound) || (obj === null)) ? obj : $throwClassCastException(obj, "tb.oss.tafsir.service.Client$AyahNotFound"));
+}
+function $isArrayOf_Ltb_oss_tafsir_service_Client$AyahNotFound(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltb_oss_tafsir_service_Client$AyahNotFound)));
+}
+function $asArrayOf_Ltb_oss_tafsir_service_Client$AyahNotFound(obj, depth) {
+  return (($isArrayOf_Ltb_oss_tafsir_service_Client$AyahNotFound(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ltb.oss.tafsir.service.Client$AyahNotFound;", depth));
+}
+var $d_Ltb_oss_tafsir_service_Client$AyahNotFound = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$AyahNotFound, "tb.oss.tafsir.service.Client$AyahNotFound", ({
+  Ltb_oss_tafsir_service_Client$AyahNotFound: 1,
   jl_Throwable: 1,
   Ljava_io_Serializable: 1,
   s_Equals: 1,
