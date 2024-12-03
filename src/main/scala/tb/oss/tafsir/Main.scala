@@ -29,25 +29,27 @@ object Main {
     implicit val runtime: IORuntime = cats.effect.unsafe.IORuntime.global
 
     val form = document.createElement("form").asInstanceOf[html.Form]
+
     val tafsirIdInput = document.createElement("input").asInstanceOf[html.Input]
     tafsirIdInput.name = "tafsirId"
-    tafsirIdInput.placeholder = "Tafsir ID"
+    tafsirIdInput.placeholder = "رقم التفسير"
 
     val surahNumberInput = document.createElement("input").asInstanceOf[html.Input]
     surahNumberInput.name = "surahNumber"
-    surahNumberInput.placeholder = "Surah Number"
+    surahNumberInput.placeholder = "رقم السورة"
 
     val ayahNumberInput = document.createElement("input").asInstanceOf[html.Input]
     ayahNumberInput.name = "ayahNumber"
-    ayahNumberInput.placeholder = "Ayah Number"
+    ayahNumberInput.placeholder = "رقم الآية"
 
     val submitButton = document.createElement("button").asInstanceOf[html.Button]
-    submitButton.textContent = "Interpret"
+    submitButton.textContent = "تفسير الآية"
 
     form.appendChild(tafsirIdInput)
     form.appendChild(surahNumberInput)
     form.appendChild(ayahNumberInput)
     form.appendChild(submitButton)
+    form.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
 
     document.body.appendChild(form)
 
