@@ -14,10 +14,14 @@ import scala.scalajs.js.Thenable.Implicits.*
 import scala.concurrent.ExecutionContext.Implicits.global
 
 trait Client[F[_]] {
+  def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah]
   def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): F[AyahInterpretation]
 }
 
 object Client {
+
+  case class AyahNotFound(surahNumber: Int, ayahNumber: Int)
+      extends Throwable(s"Ayah '$ayahNumber' of surah '$surahNumber' was not found")
 
   case class AyahInterpretationNotFound(tafsirId: Int, surahNumber: Int, ayahNumber: Int)
       extends Throwable(s"Tafsir '$tafsirId' for ayah '$ayahNumber' of surah '$surahNumber' was not found")
@@ -26,6 +30,8 @@ object Client {
       extends Throwable(s"Unknown error occurred '$ayahNumber' of surah '$surahNumber, due to : $response")
 
   case class AyahInterpretation(tafsir: Tafsir)
+
+  case class Ayah(`hizb_number`: Int, `page_number`: Int, `juz_number`: Int, `text_uthmani`: String)
 
   case class Tafsir(
     `resource_id`: Int,
@@ -39,6 +45,26 @@ object Client {
   case class TafsirName(`name`: String, `language_name`: String)
 
   def impl[F[_]: Async](): Client[F] = new Client[F] {
+
+    override def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah] = {
+      val response = basicRequest
+        .get(uri"https://api.quran.com/api/v4/verses/by_key/$surahNumber:$ayahNumber?fields=text_uthmani")
+        .headers(Map("Accept" -> "application/json"))
+        .response(asJson[Ayah])
+        .send(FetchBackend())
+        .toAsync[F]
+      response.flatMap {
+        case Response(body, StatusCode.Ok, _, _, _, _) =>
+          body match {
+            case Right(ayah) => ayah.pure
+            case Left(error) => error.raiseError
+          }
+        case res @ Response(body, StatusCode.NotFound, _, _, _, _) => AyahNotFound(surahNumber, ayahNumber).raiseError
+        case res: Response[Either[ResponseException[String, io.circe.Error], Ayah]] =>
+          UnknownError(surahNumber, ayahNumber, res.body.swap.toOption).raiseError
+      }
+    }
+
     override def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): F[AyahInterpretation] = {
       val response = basicRequest
         .get(uri"https://api.quran.com/api/v4/tafsirs/$tafsirId/by_ayah/$surahNumber:$ayahNumber")
