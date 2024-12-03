@@ -7,10 +7,7 @@ import tb.oss.tafsir.service.{Client, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import tb.oss.tafsir.service.Client.{Ayah, AyahInterpretation}
-
-import scala.concurrent.Future
-import scala.util.{Failure, Success}
-import scala.concurrent.ExecutionContext.Implicits.global
+import scalatags.Text.all.*
 
 object Main {
 
@@ -34,58 +31,44 @@ object Main {
   def main(args: Array[String]): Unit = {
     implicit val runtime: IORuntime = cats.effect.unsafe.IORuntime.global
 
-    val form = document.createElement("form").asInstanceOf[html.Form]
-
-    val tafsirIdInput = document.createElement("input").asInstanceOf[html.Input]
-    tafsirIdInput.name = "tafsirId"
-    tafsirIdInput.placeholder = "رقم التفسير"
-
-    val surahNumberInput = document.createElement("input").asInstanceOf[html.Input]
-    surahNumberInput.name = "surahNumber"
-    surahNumberInput.placeholder = "رقم السورة"
-
-    val ayahNumberInput = document.createElement("input").asInstanceOf[html.Input]
-    ayahNumberInput.name = "ayahNumber"
-    ayahNumberInput.placeholder = "رقم الآية"
-
-    val submitButton = document.createElement("button").asInstanceOf[html.Button]
-    submitButton.textContent = "تفسير الآية"
-
-    form.appendChild(tafsirIdInput)
-    form.appendChild(surahNumberInput)
-    form.appendChild(ayahNumberInput)
-    form.appendChild(submitButton)
-    form.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
-
-    document.body.appendChild(form)
-
     val service = TafsirService.impl[IO](Client.impl[IO]())
 
-    form.onsubmit = (e: dom.Event) => {
+    val tafsirForm = form(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
+      input(name := "tafsirId", placeholder := "رقم التفسير"),
+      input(name := "surahNumber", placeholder := "رقم السورة"),
+      input(name := "ayahNumber", placeholder := "رقم الآية"),
+      button("تفسير الآية")
+    )
+
+    val formElement = document.createElement("form").asInstanceOf[html.Form]
+    formElement.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
+    formElement.innerHTML = tafsirForm.render
+    document.body.appendChild(formElement)
+
+    formElement.onsubmit = (e: dom.Event) => {
       e.preventDefault()
-      val tafsirId = tafsirIdInput.value.toInt
-      val surahNumber = surahNumberInput.value.toInt
-      val ayahNumber = ayahNumberInput.value.toInt
+      val tafsirId = formElement.elements.namedItem("tafsirId").asInstanceOf[html.Input].value.toInt
+      val surahNumber = formElement.elements.namedItem("surahNumber").asInstanceOf[html.Input].value.toInt
+      val ayahNumber = formElement.elements.namedItem("ayahNumber").asInstanceOf[html.Input].value.toInt
 
       val ayahIO: IO[Ayah] = service.getAyah(surahNumber, ayahNumber)
       val resultIO: IO[(AyahInterpretation, Ayah)] = service
         .getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
         .flatMap(interpretation => ayahIO.map(ayah => (interpretation, ayah)))
 
-      val interpretIO: IO[AyahInterpretation] = service.getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
-
-      val interpretFuture: Future[AyahInterpretation] = interpretIO.unsafeToFuture()
-
       resultIO.unsafeRunAsync {
         case Right((interpretation, ayah)) =>
-          val resultNode = document.createElement("div")
-          resultNode.innerHTML = formatAyahInterpretation(surahNumber, ayahNumber, ayah, interpretation)
-          resultNode.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
-          document.body.appendChild(resultNode)
+          val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
+            formatAyahInterpretation(surahNumber, ayahNumber, ayah, interpretation)
+          )
+          val resultElement = document.createElement("div")
+          resultElement.innerHTML = resultNode.render
+          document.body.appendChild(resultElement)
         case Left(ex) =>
-          val errorNode = document.createElement("div")
-          errorNode.textContent = s"Failed to interpret: ${ex.getMessage}"
-          document.body.appendChild(errorNode)
+          val errorNode = div(s"Failed to interpret: ${ex.getMessage}")
+          val errorElement = document.createElement("div")
+          errorElement.innerHTML = errorNode.render
+          document.body.appendChild(errorElement)
       }
     }
   }
