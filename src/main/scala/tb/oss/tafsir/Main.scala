@@ -47,6 +47,16 @@ object Main {
 
     formElement.onsubmit = (e: dom.Event) => {
       e.preventDefault()
+
+      val resultContainer = Option(document.getElementById("resultContainer")).getOrElse {
+        val newResultContainer = document.createElement("div")
+        newResultContainer.id = "resultContainer"
+        document.body.appendChild(newResultContainer)
+        newResultContainer
+      }.asInstanceOf[html.Element]
+
+      resultContainer.innerHTML = ""
+
       val tafsirId = formElement.elements.namedItem("tafsirId").asInstanceOf[html.Input].value.toInt
       val surahNumber = formElement.elements.namedItem("surahNumber").asInstanceOf[html.Input].value.toInt
       val ayahNumber = formElement.elements.namedItem("ayahNumber").asInstanceOf[html.Input].value.toInt
@@ -61,14 +71,10 @@ object Main {
           val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
             formatAyahInterpretation(surahNumber, ayahNumber, ayah, interpretation)
           )
-          val resultElement = document.createElement("div")
-          resultElement.innerHTML = resultNode.render
-          document.body.appendChild(resultElement)
+          resultContainer.innerHTML = resultNode.render
         case Left(ex) =>
           val errorNode = div(s"Failed to interpret: ${ex.getMessage}")
-          val errorElement = document.createElement("div")
-          errorElement.innerHTML = errorNode.render
-          document.body.appendChild(errorElement)
+          resultContainer.innerHTML = errorNode.render
       }
     }
   }

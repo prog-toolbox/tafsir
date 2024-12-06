@@ -17391,15 +17391,25 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
   document.body.appendChild(formElement);
   formElement.onsubmit = ((e) => {
     e.preventDefault();
+    var this$5 = $n($m_s_Option$().apply__O__s_Option(document.getElementById("resultContainer")));
+    if (this$5.isEmpty__Z()) {
+      var newResultContainer = document.createElement("div");
+      newResultContainer.id = "resultContainer";
+      document.body.appendChild(newResultContainer);
+      var resultContainer = newResultContainer;
+    } else {
+      var resultContainer = this$5.get__O();
+    }
+    resultContainer.innerHTML = "";
     var x = $as_T(formElement.elements.namedItem("tafsirId").value);
-    var this$7 = $m_jl_Integer$();
-    var tafsirId = this$7.parseInt__T__I__I(x, 10);
+    var this$8 = $m_jl_Integer$();
+    var tafsirId = this$8.parseInt__T__I__I(x, 10);
     var x$1 = $as_T(formElement.elements.namedItem("surahNumber").value);
-    var this$10 = $m_jl_Integer$();
-    var surahNumber = this$10.parseInt__T__I__I(x$1, 10);
+    var this$11 = $m_jl_Integer$();
+    var surahNumber = this$11.parseInt__T__I__I(x$1, 10);
     var x$2 = $as_T(formElement.elements.namedItem("ayahNumber").value);
-    var this$13 = $m_jl_Integer$();
-    var ayahNumber = this$13.parseInt__T__I__I(x$2, 10);
+    var this$14 = $m_jl_Integer$();
+    var ayahNumber = this$14.parseInt__T__I__I(x$2, 10);
     var ayahIO = $as_Lcats_effect_IO(service.getAyah__I__I__O(surahNumber, ayahNumber));
     var resultIO = $n($as_Lcats_effect_IO(service.getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((interpretation) => {
       var interpretation$1 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation(interpretation);
@@ -17421,10 +17431,8 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
             $m_Lscalatags_Text$all$();
             var v = $m_Ltb_oss_tafsir_Main$().formatAyahInterpretation__I__I__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T(surahNumber, ayahNumber, ayah$2, interpretation$2);
             var resultNode = $x_2.apply__sci_Seq__Lscalatags_Text$TypedTag($x_1.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v)])));
-            var resultElement = document.createElement("div");
-            var this$16 = $n(resultNode);
-            resultElement.innerHTML = this$16.toString__T();
-            document.body.appendChild(resultElement);
+            var this$17 = $n(resultNode);
+            resultContainer.innerHTML = this$17.toString__T();
             break matchResult1;
           }
         }
@@ -17435,10 +17443,8 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
           $m_Lscalatags_Text$all$();
           var v$1 = ("Failed to interpret: " + $n(ex).getMessage__T());
           var errorNode = $x_4.apply__sci_Seq__Lscalatags_Text$TypedTag($x_3.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$1)])));
-          var errorElement = document.createElement("div");
-          var this$18 = $n(errorNode);
-          errorElement.innerHTML = this$18.toString__T();
-          document.body.appendChild(errorElement);
+          var this$19 = $n(errorNode);
+          resultContainer.innerHTML = this$19.toString__T();
           break matchResult1;
         }
         throw new $c_s_MatchError(x$1$2);
