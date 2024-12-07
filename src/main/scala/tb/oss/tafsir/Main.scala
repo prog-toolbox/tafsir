@@ -11,17 +11,11 @@ import scalatags.Text.all.*
 
 object Main {
 
-  def formatAyahInterpretation(
-    surah: Surah,
-    ayahNumber: Int,
-    ayah: Ayah,
-    ayahInterpretation: AyahInterpretation
-  ): String = {
+  private def formatAyahInterpretation(surah: Surah, ayah: Ayah, ayahInterpretation: AyahInterpretation): String = {
     val fields = List(
       s"مكان النزول: ${surah.revelationPlace}",
       s"عدد الآيات: ${surah.versesCount}",
       s"الآية: ${ayah.verse.`text_uthmani`}",
-      s"رقم الآية: $ayahNumber",
       s"كتاب التفسير: ${ayahInterpretation.tafsir.`resource_name`}",
       s"التفسير: ${ayahInterpretation.tafsir.`text`}"
     )
@@ -41,7 +35,7 @@ object Main {
     val tafsirForm = form(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
       input(name := "tafsirId", placeholder := "رقم التفسير"),
       select(name := "surahNumber")(surahOptions),
-      input(name := "ayahNumber", placeholder := "رقم الآية"),
+      select(name := "ayahNumber")(),
       button("تفسير الآية")
     )
 
@@ -49,6 +43,41 @@ object Main {
     formElement.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
     formElement.innerHTML = tafsirForm.render
     document.body.appendChild(formElement)
+
+    val script = document.createElement("script")
+    script.textContent = s"""
+      function updateAyahOptions() {
+        var surahSelect = document.getElementsByName('surahNumber')[0];
+        var ayahSelect = document.getElementsByName('ayahNumber')[0];
+        var surahNumber = parseInt(surahSelect.value);
+        var versesCount = getVersesCount(surahNumber);
+
+        ayahSelect.innerHTML = '';
+        for (var i = 1; i <= versesCount; i++) {
+          var option = document.createElement('option');
+          option.value = i.toString();
+          option.text = i.toString();
+          ayahSelect.appendChild(option);
+        }
+      }
+
+      function getVersesCount(surahNumber) {
+        var versesCount = { ${Surah.ayahsCount.map(surah => s"${surah._1}: ${surah._2}").mkString(",")} };
+        return versesCount[surahNumber] || 0;
+      }
+
+      // Initialize ayahNumber options
+      document.addEventListener('DOMContentLoaded', function() {
+        updateAyahOptions();
+      });
+
+      // Add change event listener to surahNumber dropdown
+      document.addEventListener('DOMContentLoaded', function() {
+        var surahSelect = document.getElementsByName('surahNumber')[0];
+        surahSelect.addEventListener('change', updateAyahOptions);
+      });
+    """
+    document.head.appendChild(script)
 
     formElement.onsubmit = (e: dom.Event) => {
       e.preventDefault()
@@ -75,7 +104,7 @@ object Main {
       resultIO.unsafeRunAsync {
         case Right((interpretation, ayah, surah)) =>
           val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-            formatAyahInterpretation(surah, ayahNumber, ayah, interpretation)
+            formatAyahInterpretation(surah, ayah, interpretation)
           )
           resultContainer.innerHTML = resultNode.render
         case Left(ex) =>

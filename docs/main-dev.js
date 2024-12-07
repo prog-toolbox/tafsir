@@ -17344,17 +17344,8 @@ function $asArrayOf_Lsttp_ws_WebSocket(obj, depth) {
 function $s_Ltb_oss_tafsir_Main__main__AT__V(args) {
   $m_Ltb_oss_tafsir_Main$().main__AT__V(args);
 }
-/** @constructor */
-function $c_Ltb_oss_tafsir_Main$() {
-}
-$c_Ltb_oss_tafsir_Main$.prototype = new $h_O();
-$c_Ltb_oss_tafsir_Main$.prototype.constructor = $c_Ltb_oss_tafsir_Main$;
-/** @constructor */
-function $h_Ltb_oss_tafsir_Main$() {
-}
-$h_Ltb_oss_tafsir_Main$.prototype = $c_Ltb_oss_tafsir_Main$.prototype;
-$c_Ltb_oss_tafsir_Main$.prototype.formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__I__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T = (function(surah, ayahNumber, ayah, ayahInterpretation) {
-  var fields = new $c_sci_$colon$colon(("\u0645\u0643\u0627\u0646 \u0627\u0644\u0646\u0632\u0648\u0644: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_revelationPlace), new $c_sci_$colon$colon(("\u0639\u062f\u062f \u0627\u0644\u0622\u064a\u0627\u062a: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_versesCount), new $c_sci_$colon$colon(("\u0627\u0644\u0622\u064a\u0629: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$Ayah__f_verse).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani), new $c_sci_$colon$colon(("\u0631\u0642\u0645 \u0627\u0644\u0622\u064a\u0629: " + ayahNumber), new $c_sci_$colon$colon(("\u0643\u062a\u0627\u0628 \u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_resource_name), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text), $m_sci_Nil$()))))));
+function $p_Ltb_oss_tafsir_Main$__formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T($thiz, surah, ayah, ayahInterpretation) {
+  var fields = new $c_sci_$colon$colon(("\u0645\u0643\u0627\u0646 \u0627\u0644\u0646\u0632\u0648\u0644: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_revelationPlace), new $c_sci_$colon$colon(("\u0639\u062f\u062f \u0627\u0644\u0622\u064a\u0627\u062a: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_versesCount), new $c_sci_$colon$colon(("\u0627\u0644\u0622\u064a\u0629: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$Ayah__f_verse).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani), new $c_sci_$colon$colon(("\u0643\u062a\u0627\u0628 \u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_resource_name), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text), $m_sci_Nil$())))));
   var f = ((field) => {
     var field$1 = $as_T(field);
     return ("\u2022 " + field$1);
@@ -17376,7 +17367,16 @@ $c_Ltb_oss_tafsir_Main$.prototype.formatAyahInterpretation__Ltb_oss_tafsir_servi
     var this$1 = h;
   }
   return $f_sc_IterableOnceOps__mkString__T__T__T__T(this$1, "", "\n", "");
-});
+}
+/** @constructor */
+function $c_Ltb_oss_tafsir_Main$() {
+}
+$c_Ltb_oss_tafsir_Main$.prototype = new $h_O();
+$c_Ltb_oss_tafsir_Main$.prototype.constructor = $c_Ltb_oss_tafsir_Main$;
+/** @constructor */
+function $h_Ltb_oss_tafsir_Main$() {
+}
+$h_Ltb_oss_tafsir_Main$.prototype = $c_Ltb_oss_tafsir_Main$.prototype;
 $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
   var runtime = $m_Lcats_effect_unsafe_IORuntime$().global__Lcats_effect_unsafe_IORuntime();
   var evidence$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
@@ -17428,40 +17428,47 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
   var this$11 = $m_Lscalatags_Text$all$();
   var this$10 = $m_s_$less$colon$less$();
   var ev = this$10.s_$less$colon$less$__f_singleton;
-  var tafsirForm = $x_7.apply__sci_Seq__Lscalatags_Text$TypedTag($x_6.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_5, $n($x_4).apply__sci_Seq__Lscalatags_Text$TypedTag($x_3.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$11, surahOptions, ev)]))), $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().input__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().placeholder__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("\u0631\u0642\u0645 \u0627\u0644\u0622\u064a\u0629", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))), $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u062a\u0641\u0633\u064a\u0631 \u0627\u0644\u0622\u064a\u0629"))])))])));
+  var tafsirForm = $x_7.apply__sci_Seq__Lscalatags_Text$TypedTag($x_6.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_5, $n($x_4).apply__sci_Seq__Lscalatags_Text$TypedTag($x_3.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$11, surahOptions, ev)]))), $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([]))), $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u062a\u0641\u0633\u064a\u0631 \u0627\u0644\u0622\u064a\u0629"))])))])));
   var formElement = document.createElement("form");
   formElement.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;");
   var this$13 = $n(tafsirForm);
   formElement.innerHTML = this$13.toString__T();
   document.body.appendChild(formElement);
+  var script = document.createElement("script");
+  var this$14 = $n($as_sc_IterableOnceOps($n($m_Ltb_oss_tafsir_service_Surah$().Ltb_oss_tafsir_service_Surah$__f_ayahsCount).map__F1__O(new $c_sjsr_AnonFunction1(((surah) => {
+    var surah$1 = $as_T2(surah);
+    return (($n(surah$1)._1__O() + ": ") + $n(surah$1)._2__O());
+  })))));
+  script.textContent = (("\n      function updateAyahOptions() {\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        var ayahSelect = document.getElementsByName('ayahNumber')[0];\n        var surahNumber = parseInt(surahSelect.value);\n        var versesCount = getVersesCount(surahNumber);\n\n        ayahSelect.innerHTML = '';\n        for (var i = 1; i <= versesCount; i++) {\n          var option = document.createElement('option');\n          option.value = i.toString();\n          option.text = i.toString();\n          ayahSelect.appendChild(option);\n        }\n      }\n\n      function getVersesCount(surahNumber) {\n        var versesCount = { " + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$14, "", ",", "")) + " };\n        return versesCount[surahNumber] || 0;\n      }\n\n      // Initialize ayahNumber options\n      document.addEventListener('DOMContentLoaded', function() {\n        updateAyahOptions();\n      });\n\n      // Add change event listener to surahNumber dropdown\n      document.addEventListener('DOMContentLoaded', function() {\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        surahSelect.addEventListener('change', updateAyahOptions);\n      });\n    ");
+  document.head.appendChild(script);
   formElement.onsubmit = ((e) => {
     e.preventDefault();
-    var this$14 = $n($m_s_Option$().apply__O__s_Option(document.getElementById("resultContainer")));
-    if (this$14.isEmpty__Z()) {
+    var this$15 = $n($m_s_Option$().apply__O__s_Option(document.getElementById("resultContainer")));
+    if (this$15.isEmpty__Z()) {
       var newResultContainer = document.createElement("div");
       newResultContainer.id = "resultContainer";
       document.body.appendChild(newResultContainer);
       var resultContainer = newResultContainer;
     } else {
-      var resultContainer = this$14.get__O();
+      var resultContainer = this$15.get__O();
     }
     resultContainer.innerHTML = "";
     var x = $as_T(formElement.elements.namedItem("tafsirId").value);
-    var this$17 = $m_jl_Integer$();
-    var tafsirId = this$17.parseInt__T__I__I(x, 10);
+    var this$18 = $m_jl_Integer$();
+    var tafsirId = this$18.parseInt__T__I__I(x, 10);
     var x$2 = $as_T(formElement.elements.namedItem("surahNumber").value);
-    var this$20 = $m_jl_Integer$();
-    var surahNumber = this$20.parseInt__T__I__I(x$2, 10);
+    var this$21 = $m_jl_Integer$();
+    var surahNumber = this$21.parseInt__T__I__I(x$2, 10);
     var x$3 = $as_T(formElement.elements.namedItem("ayahNumber").value);
-    var this$23 = $m_jl_Integer$();
-    var ayahNumber = this$23.parseInt__T__I__I(x$3, 10);
+    var this$24 = $m_jl_Integer$();
+    var ayahNumber = this$24.parseInt__T__I__I(x$3, 10);
     var resultIO = $n($as_Lcats_effect_IO(service.getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((interpretation) => {
       var interpretation$1 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation(interpretation);
       return $n($as_Lcats_effect_IO(service.getAyah__I__I__O(surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((ayah) => {
         var ayah$1 = $as_Ltb_oss_tafsir_service_Client$Ayah(ayah);
-        return $n($as_Lcats_effect_IO(service.getSurah__I__O(surahNumber))).map__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((surah) => {
-          var surah$1 = $as_Ltb_oss_tafsir_service_Surah(surah);
-          return new $c_T3(interpretation$1, ayah$1, surah$1);
+        return $n($as_Lcats_effect_IO(service.getSurah__I__O(surahNumber))).map__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((surah$2) => {
+          var surah$3 = $as_Ltb_oss_tafsir_service_Surah(surah$2);
+          return new $c_T3(interpretation$1, ayah$1, surah$3);
         })));
       })));
     })));
@@ -17473,14 +17480,14 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
           if ((x8 !== null)) {
             var interpretation$2 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n(x8).T3__f__1);
             var ayah$2 = $as_Ltb_oss_tafsir_service_Client$Ayah($n(x8).T3__f__2);
-            var surah$2 = $as_Ltb_oss_tafsir_service_Surah($n(x8).T3__f__3);
+            var surah$4 = $as_Ltb_oss_tafsir_service_Surah($n(x8).T3__f__3);
             var $x_9 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("direction: rtl; text-align: right; white-space: pre-wrap;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
             var $x_8 = $m_sr_ScalaRunTime$();
             $m_Lscalatags_Text$all$();
-            var v$1 = $m_Ltb_oss_tafsir_Main$().formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__I__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T(surah$2, ayahNumber, ayah$2, interpretation$2);
+            var v$1 = $p_Ltb_oss_tafsir_Main$__formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T($m_Ltb_oss_tafsir_Main$(), surah$4, ayah$2, interpretation$2);
             var resultNode = $x_9.apply__sci_Seq__Lscalatags_Text$TypedTag($x_8.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$1)])));
-            var this$26 = $n(resultNode);
-            resultContainer.innerHTML = this$26.toString__T();
+            var this$27 = $n(resultNode);
+            resultContainer.innerHTML = this$27.toString__T();
             break matchResult2;
           }
         }
@@ -17491,8 +17498,8 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
           $m_Lscalatags_Text$all$();
           var v$2 = ("Failed to interpret: " + $n(ex).getMessage__T());
           var errorNode = $x_11.apply__sci_Seq__Lscalatags_Text$TypedTag($x_10.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$2)])));
-          var this$28 = $n(errorNode);
-          resultContainer.innerHTML = this$28.toString__T();
+          var this$29 = $n(errorNode);
+          resultContainer.innerHTML = this$29.toString__T();
           break matchResult2;
         }
         throw new $c_s_MatchError(x$1$3);
@@ -35318,10 +35325,14 @@ function $m_Ltb_oss_tafsir_service_Client$Verse$() {
 /** @constructor */
 function $c_Ltb_oss_tafsir_service_Surah$() {
   this.Ltb_oss_tafsir_service_Surah$__f_list = null;
+  this.Ltb_oss_tafsir_service_Surah$__f_ayahsCount = null;
   $n_Ltb_oss_tafsir_service_Surah$ = this;
   var this$229 = $m_sci_Map$();
   var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T2.getArrayOf().constr)([new $c_T2(1, "\u0627\u0644\u0641\u0627\u062a\u062d\u0629"), new $c_T2(2, "\u0627\u0644\u0628\u0642\u0631\u0629"), new $c_T2(3, "\u0622\u0644 \u0639\u0645\u0631\u0627\u0646"), new $c_T2(4, "\u0627\u0644\u0646\u0633\u0627\u0621"), new $c_T2(5, "\u0627\u0644\u0645\u0627\u0626\u062f\u0629"), new $c_T2(6, "\u0627\u0644\u0623\u0646\u0639\u0627\u0645"), new $c_T2(7, "\u0627\u0644\u0623\u0639\u0631\u0627\u0641"), new $c_T2(8, "\u0627\u0644\u0623\u0646\u0641\u0627\u0644"), new $c_T2(9, "\u0627\u0644\u062a\u0648\u0628\u0629"), new $c_T2(10, "\u064a\u0648\u0646\u0633"), new $c_T2(11, "\u0647\u0648\u062f"), new $c_T2(12, "\u064a\u0648\u0633\u0641"), new $c_T2(13, "\u0627\u0644\u0631\u0639\u062f"), new $c_T2(14, "\u0627\u0628\u0631\u0627\u0647\u064a\u0645"), new $c_T2(15, "\u0627\u0644\u062d\u062c\u0631"), new $c_T2(16, "\u0627\u0644\u0646\u062d\u0644"), new $c_T2(17, "\u0627\u0644\u0625\u0633\u0631\u0627\u0621"), new $c_T2(18, "\u0627\u0644\u0643\u0647\u0641"), new $c_T2(19, "\u0645\u0631\u064a\u0645"), new $c_T2(20, "\u0637\u0647"), new $c_T2(21, "\u0627\u0644\u0623\u0646\u0628\u064a\u0627\u0621"), new $c_T2(22, "\u0627\u0644\u062d\u062c"), new $c_T2(23, "\u0627\u0644\u0645\u0624\u0645\u0646\u0648\u0646"), new $c_T2(24, "\u0627\u0644\u0646\u0648\u0631"), new $c_T2(25, "\u0627\u0644\u0641\u0631\u0642\u0627\u0646"), new $c_T2(26, "\u0627\u0644\u0634\u0639\u0631\u0627\u0621"), new $c_T2(27, "\u0627\u0644\u0646\u0645\u0644"), new $c_T2(28, "\u0627\u0644\u0642\u0635\u0635"), new $c_T2(29, "\u0627\u0644\u0639\u0646\u0643\u0628\u0648\u062a"), new $c_T2(30, "\u0627\u0644\u0631\u0648\u0645"), new $c_T2(31, "\u0644\u0642\u0645\u0627\u0646"), new $c_T2(32, "\u0627\u0644\u0633\u062c\u062f\u0629"), new $c_T2(33, "\u0627\u0644\u0623\u062d\u0632\u0627\u0628"), new $c_T2(34, "\u0633\u0628\u0625"), new $c_T2(35, "\u0641\u0627\u0637\u0631"), new $c_T2(36, "\u064a\u0633"), new $c_T2(37, "\u0627\u0644\u0635\u0627\u0641\u0627\u062a"), new $c_T2(38, "\u0635"), new $c_T2(39, "\u0627\u0644\u0632\u0645\u0631"), new $c_T2(40, "\u063a\u0627\u0641\u0631"), new $c_T2(41, "\u0641\u0635\u0644\u062a"), new $c_T2(42, "\u0627\u0644\u0634\u0648\u0631\u0649"), new $c_T2(43, "\u0627\u0644\u0632\u062e\u0631\u0641"), new $c_T2(44, "\u0627\u0644\u062f\u062e\u0627\u0646"), new $c_T2(45, "\u0627\u0644\u062c\u0627\u062b\u064a\u0629"), new $c_T2(46, "\u0627\u0644\u0623\u062d\u0642\u0627\u0641"), new $c_T2(47, "\u0645\u062d\u0645\u062f"), new $c_T2(48, "\u0627\u0644\u0641\u062a\u062d"), new $c_T2(49, "\u0627\u0644\u062d\u062c\u0631\u0627\u062a"), new $c_T2(50, "\u0642"), new $c_T2(51, "\u0627\u0644\u0630\u0627\u0631\u064a\u0627\u062a"), new $c_T2(52, "\u0627\u0644\u0637\u0648\u0631"), new $c_T2(53, "\u0627\u0644\u0646\u062c\u0645"), new $c_T2(54, "\u0627\u0644\u0642\u0645\u0631"), new $c_T2(55, "\u0627\u0644\u0631\u062d\u0645\u0646"), new $c_T2(56, "\u0627\u0644\u0648\u0627\u0642\u0639\u0629"), new $c_T2(57, "\u0627\u0644\u062d\u062f\u064a\u062f"), new $c_T2(58, "\u0627\u0644\u0645\u062c\u0627\u062f\u0644\u0629"), new $c_T2(59, "\u0627\u0644\u062d\u0634\u0631"), new $c_T2(60, "\u0627\u0644\u0645\u0645\u062a\u062d\u0646\u0629"), new $c_T2(61, "\u0627\u0644\u0635\u0641"), new $c_T2(62, "\u0627\u0644\u062c\u0645\u0639\u0629"), new $c_T2(63, "\u0627\u0644\u0645\u0646\u0627\u0641\u0642\u0648\u0646"), new $c_T2(64, "\u0627\u0644\u062a\u063a\u0627\u0628\u0646"), new $c_T2(65, "\u0627\u0644\u0637\u0644\u0627\u0642"), new $c_T2(66, "\u0627\u0644\u062a\u062d\u0631\u064a\u0645"), new $c_T2(67, "\u0627\u0644\u0645\u0644\u0643"), new $c_T2(68, "\u0627\u0644\u0642\u0644\u0645"), new $c_T2(69, "\u0627\u0644\u062d\u0627\u0642\u0629"), new $c_T2(70, "\u0627\u0644\u0645\u0639\u0627\u0631\u062c"), new $c_T2(71, "\u0646\u0648\u062d"), new $c_T2(72, "\u0627\u0644\u062c\u0646"), new $c_T2(73, "\u0627\u0644\u0645\u0632\u0645\u0644"), new $c_T2(74, "\u0627\u0644\u0645\u062f\u062b\u0631"), new $c_T2(75, "\u0627\u0644\u0642\u064a\u0627\u0645\u0629"), new $c_T2(76, "\u0627\u0644\u0627\u0646\u0633\u0627\u0646"), new $c_T2(77, "\u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a"), new $c_T2(78, "\u0627\u0644\u0646\u0628\u0625"), new $c_T2(79, "\u0627\u0644\u0646\u0627\u0632\u0639\u0627\u062a"), new $c_T2(80, "\u0639\u0628\u0633"), new $c_T2(81, "\u0627\u0644\u062a\u0643\u0648\u064a\u0631"), new $c_T2(82, "\u0627\u0644\u0625\u0646\u0641\u0637\u0627\u0631"), new $c_T2(83, "\u0627\u0644\u0645\u0637\u0641\u0641\u064a\u0646"), new $c_T2(84, "\u0627\u0644\u0625\u0646\u0634\u0642\u0627\u0642"), new $c_T2(85, "\u0627\u0644\u0628\u0631\u0648\u062c"), new $c_T2(86, "\u0627\u0644\u0637\u0627\u0631\u0642"), new $c_T2(87, "\u0627\u0644\u0623\u0639\u0644\u0649"), new $c_T2(88, "\u0627\u0644\u063a\u0627\u0634\u064a\u0629"), new $c_T2(89, "\u0627\u0644\u0641\u062c\u0631"), new $c_T2(90, "\u0627\u0644\u0628\u0644\u062f"), new $c_T2(91, "\u0627\u0644\u0634\u0645\u0633"), new $c_T2(92, "\u0627\u0644\u0644\u064a\u0644"), new $c_T2(93, "\u0627\u0644\u0636\u062d\u0649"), new $c_T2(94, "\u0627\u0644\u0634\u0631\u062d"), new $c_T2(95, "\u0627\u0644\u062a\u064a\u0646"), new $c_T2(96, "\u0627\u0644\u0639\u0644\u0642"), new $c_T2(97, "\u0627\u0644\u0642\u062f\u0631"), new $c_T2(98, "\u0627\u0644\u0628\u064a\u0646\u0629"), new $c_T2(99, "\u0627\u0644\u0632\u0644\u0632\u0644\u0629"), new $c_T2(100, "\u0627\u0644\u0639\u0627\u062f\u064a\u0627\u062a"), new $c_T2(101, "\u0627\u0644\u0642\u0627\u0631\u0639\u0629"), new $c_T2(102, "\u0627\u0644\u062a\u0643\u0627\u062b\u0631"), new $c_T2(103, "\u0627\u0644\u0639\u0635\u0631"), new $c_T2(104, "\u0627\u0644\u0647\u0645\u0632\u0629"), new $c_T2(105, "\u0627\u0644\u0641\u064a\u0644"), new $c_T2(106, "\u0642\u0631\u064a\u0634"), new $c_T2(107, "\u0627\u0644\u0645\u0627\u0639\u0648\u0646"), new $c_T2(108, "\u0627\u0644\u0643\u0648\u062b\u0631"), new $c_T2(109, "\u0627\u0644\u0643\u0627\u0641\u0631\u0648\u0646"), new $c_T2(110, "\u0627\u0644\u0646\u0635\u0631"), new $c_T2(111, "\u0627\u0644\u0645\u0633\u062f"), new $c_T2(112, "\u0627\u0644\u0625\u062e\u0644\u0627\u0635"), new $c_T2(113, "\u0627\u0644\u0641\u0644\u0642"), new $c_T2(114, "\u0627\u0644\u0646\u0627\u0633")]));
   this.Ltb_oss_tafsir_service_Surah$__f_list = this$229.from__sc_IterableOnce__sci_Map(elems);
+  var this$458 = $m_sci_Map$();
+  var elems$1 = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T2.getArrayOf().constr)([new $c_T2(1, 7), new $c_T2(2, 286), new $c_T2(3, 200), new $c_T2(4, 176), new $c_T2(5, 120), new $c_T2(6, 165), new $c_T2(7, 206), new $c_T2(8, 75), new $c_T2(9, 129), new $c_T2(10, 109), new $c_T2(11, 123), new $c_T2(12, 111), new $c_T2(13, 43), new $c_T2(14, 52), new $c_T2(15, 99), new $c_T2(16, 128), new $c_T2(17, 111), new $c_T2(18, 110), new $c_T2(19, 98), new $c_T2(20, 135), new $c_T2(21, 112), new $c_T2(22, 78), new $c_T2(23, 118), new $c_T2(24, 64), new $c_T2(25, 77), new $c_T2(26, 227), new $c_T2(27, 93), new $c_T2(28, 88), new $c_T2(29, 69), new $c_T2(30, 60), new $c_T2(31, 34), new $c_T2(32, 30), new $c_T2(33, 73), new $c_T2(34, 54), new $c_T2(35, 45), new $c_T2(36, 83), new $c_T2(37, 182), new $c_T2(38, 88), new $c_T2(39, 75), new $c_T2(40, 85), new $c_T2(41, 54), new $c_T2(42, 53), new $c_T2(43, 89), new $c_T2(44, 59), new $c_T2(45, 37), new $c_T2(46, 35), new $c_T2(47, 38), new $c_T2(48, 29), new $c_T2(49, 18), new $c_T2(50, 45), new $c_T2(51, 60), new $c_T2(52, 49), new $c_T2(53, 62), new $c_T2(54, 55), new $c_T2(55, 78), new $c_T2(56, 96), new $c_T2(57, 29), new $c_T2(58, 22), new $c_T2(59, 24), new $c_T2(60, 13), new $c_T2(61, 14), new $c_T2(62, 11), new $c_T2(63, 11), new $c_T2(64, 18), new $c_T2(65, 12), new $c_T2(66, 12), new $c_T2(67, 30), new $c_T2(68, 52), new $c_T2(69, 52), new $c_T2(70, 44), new $c_T2(71, 28), new $c_T2(72, 28), new $c_T2(73, 20), new $c_T2(74, 56), new $c_T2(75, 40), new $c_T2(76, 31), new $c_T2(77, 50), new $c_T2(78, 40), new $c_T2(79, 46), new $c_T2(80, 42), new $c_T2(81, 29), new $c_T2(82, 19), new $c_T2(83, 36), new $c_T2(84, 25), new $c_T2(85, 22), new $c_T2(86, 17), new $c_T2(87, 19), new $c_T2(88, 26), new $c_T2(89, 30), new $c_T2(90, 20), new $c_T2(91, 15), new $c_T2(92, 21), new $c_T2(93, 11), new $c_T2(94, 8), new $c_T2(95, 8), new $c_T2(96, 19), new $c_T2(97, 5), new $c_T2(98, 8), new $c_T2(99, 8), new $c_T2(100, 11), new $c_T2(101, 11), new $c_T2(102, 8), new $c_T2(103, 3), new $c_T2(104, 9), new $c_T2(105, 5), new $c_T2(106, 4), new $c_T2(107, 7), new $c_T2(108, 3), new $c_T2(109, 6), new $c_T2(110, 3), new $c_T2(111, 5), new $c_T2(112, 4), new $c_T2(113, 5), new $c_T2(114, 6)]));
+  this.Ltb_oss_tafsir_service_Surah$__f_ayahsCount = this$458.from__sc_IterableOnce__sci_Map(elems$1);
 }
 $c_Ltb_oss_tafsir_service_Surah$.prototype = new $h_O();
 $c_Ltb_oss_tafsir_service_Surah$.prototype.constructor = $c_Ltb_oss_tafsir_service_Surah$;
