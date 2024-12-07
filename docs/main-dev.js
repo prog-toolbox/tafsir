@@ -17468,31 +17468,129 @@ function $m_Ltb_oss_tafsir_Main$() {
   return $n_Ltb_oss_tafsir_Main$;
 }
 /** @constructor */
-function $c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$() {
+function $c_Ltb_oss_tafsir_utils_AsyncExtensions$() {
 }
-$c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$.prototype = new $h_O();
-$c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$.prototype.constructor = $c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$;
+$c_Ltb_oss_tafsir_utils_AsyncExtensions$.prototype = new $h_O();
+$c_Ltb_oss_tafsir_utils_AsyncExtensions$.prototype.constructor = $c_Ltb_oss_tafsir_utils_AsyncExtensions$;
 /** @constructor */
-function $h_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$() {
+function $h_Ltb_oss_tafsir_utils_AsyncExtensions$() {
 }
-$h_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$.prototype = $c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$.prototype;
-$c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$.prototype.toAsync$extension__s_concurrent_Future__Lcats_effect_kernel_Async__O = (function(this$, evidence$1) {
+$h_Ltb_oss_tafsir_utils_AsyncExtensions$.prototype = $c_Ltb_oss_tafsir_utils_AsyncExtensions$.prototype;
+$c_Ltb_oss_tafsir_utils_AsyncExtensions$.prototype.toAsync__s_concurrent_Future__Lcats_effect_kernel_Async__O = (function(future, evidence$1) {
   var this$5 = $n(evidence$1);
   $n(evidence$1);
-  var thunk = new $c_sjsr_AnonFunction0((() => this$));
+  var thunk = new $c_sjsr_AnonFunction0((() => future));
   var this$4 = $m_Lcats_effect_IO$();
   var fut = this$4.delay__F0__Lcats_effect_IO(thunk);
   return $f_Lcats_effect_kernel_Async__fromFuture__O__O(this$5, fut);
 });
-var $d_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$ = new $TypeData().initClass($c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$, "tb.oss.tafsir.utils.AsyncExtensions$FutureOps$", ({
-  Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$: 1
+var $d_Ltb_oss_tafsir_utils_AsyncExtensions$ = new $TypeData().initClass($c_Ltb_oss_tafsir_utils_AsyncExtensions$, "tb.oss.tafsir.utils.AsyncExtensions$", ({
+  Ltb_oss_tafsir_utils_AsyncExtensions$: 1
 }));
-var $n_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$;
-function $m_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$() {
-  if ((!$n_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$)) {
-    $n_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$ = new $c_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$();
+var $n_Ltb_oss_tafsir_utils_AsyncExtensions$;
+function $m_Ltb_oss_tafsir_utils_AsyncExtensions$() {
+  if ((!$n_Ltb_oss_tafsir_utils_AsyncExtensions$)) {
+    $n_Ltb_oss_tafsir_utils_AsyncExtensions$ = new $c_Ltb_oss_tafsir_utils_AsyncExtensions$();
   }
-  return $n_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$;
+  return $n_Ltb_oss_tafsir_utils_AsyncExtensions$;
+}
+/** @constructor */
+function $c_Ltb_oss_tafsir_utils_ResponseExtensions$() {
+}
+$c_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype = new $h_O();
+$c_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype.constructor = $c_Ltb_oss_tafsir_utils_ResponseExtensions$;
+/** @constructor */
+function $h_Ltb_oss_tafsir_utils_ResponseExtensions$() {
+}
+$h_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype = $c_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype;
+$c_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype.handleResponse__O__jl_Throwable__jl_Throwable__Lcats_effect_kernel_Async__O = (function(logic, notFound, unknownError, evidence$1) {
+  var this$25 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(logic, evidence$1);
+  var f = new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_Lsttp_client3_Response(x$1);
+    if ((x$1$1 !== null)) {
+      var this$3 = $n(x$1$1);
+      var x22 = $as_s_util_Either(this$3.Lsttp_client3_Response__f_body);
+      var this$4 = $n(x$1$1);
+      var x23 = this$4.Lsttp_client3_Response__f_code;
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x23)) {
+        if ((x22 instanceof $c_s_util_Right)) {
+          var value = $n($as_s_util_Right(x22)).s_util_Right__f_value;
+          $n(evidence$1);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Pure(value);
+        }
+        if ((x22 instanceof $c_s_util_Left)) {
+          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x22)).s_util_Left__f_value);
+          $n(evidence$1);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Error(error);
+        }
+        throw new $c_s_MatchError(x22);
+      }
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x23)) {
+        $n(evidence$1);
+        $m_Lcats_effect_IO$();
+        return new $c_Lcats_effect_IO$Error(notFound);
+      }
+      $n(evidence$1);
+      var e = $n(unknownError).initCause__jl_Throwable__jl_Throwable($as_jl_Throwable($n($n($n(x22).swap__s_util_Either()).toOption__s_Option()).get__O()));
+      $m_Lcats_effect_IO$();
+      return new $c_Lcats_effect_IO$Error(e);
+    }
+    throw new $c_s_MatchError(x$1$1);
+  }));
+  return $n(this$25.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$25.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+});
+$c_Ltb_oss_tafsir_utils_ResponseExtensions$.prototype.handleResponse__O__jl_Throwable__Lcats_effect_kernel_Async__O = (function(logic, unknownError, evidence$1) {
+  var this$21 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(logic, evidence$1);
+  var f = new $c_sjsr_AnonFunction1(((x$1) => {
+    var x$1$1 = $as_Lsttp_client3_Response(x$1);
+    if ((x$1$1 !== null)) {
+      var this$3 = $n(x$1$1);
+      var x42 = $as_s_util_Either(this$3.Lsttp_client3_Response__f_body);
+      var this$4 = $n(x$1$1);
+      var x43 = this$4.Lsttp_client3_Response__f_code;
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      $n(x$1$1);
+      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x43)) {
+        if ((x42 instanceof $c_s_util_Right)) {
+          var value = $n($as_s_util_Right(x42)).s_util_Right__f_value;
+          $n(evidence$1);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Pure(value);
+        }
+        if ((x42 instanceof $c_s_util_Left)) {
+          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x42)).s_util_Left__f_value);
+          $n(evidence$1);
+          $m_Lcats_effect_IO$();
+          return new $c_Lcats_effect_IO$Error(error);
+        }
+        throw new $c_s_MatchError(x42);
+      }
+      $n(evidence$1);
+      var e = $n(unknownError).initCause__jl_Throwable__jl_Throwable($as_jl_Throwable($n($n($n(x42).swap__s_util_Either()).toOption__s_Option()).get__O()));
+      $m_Lcats_effect_IO$();
+      return new $c_Lcats_effect_IO$Error(e);
+    }
+    throw new $c_s_MatchError(x$1$1);
+  }));
+  return $n(this$21.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$21.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+});
+var $d_Ltb_oss_tafsir_utils_ResponseExtensions$ = new $TypeData().initClass($c_Ltb_oss_tafsir_utils_ResponseExtensions$, "tb.oss.tafsir.utils.ResponseExtensions$", ({
+  Ltb_oss_tafsir_utils_ResponseExtensions$: 1
+}));
+var $n_Ltb_oss_tafsir_utils_ResponseExtensions$;
+function $m_Ltb_oss_tafsir_utils_ResponseExtensions$() {
+  if ((!$n_Ltb_oss_tafsir_utils_ResponseExtensions$)) {
+    $n_Ltb_oss_tafsir_utils_ResponseExtensions$ = new $c_Ltb_oss_tafsir_utils_ResponseExtensions$();
+  }
+  return $n_Ltb_oss_tafsir_utils_ResponseExtensions$;
 }
 /** @constructor */
 function $c_Lcats_Eval() {
@@ -20456,6 +20554,10 @@ class $c_jl_Throwable extends Error {
     this.jl_Throwable__f_writableStackTrace = false;
     this.jl_Throwable__f_jsErrorForStackTrace = null;
     this.jl_Throwable__f_stackTrace = null;
+  }
+  initCause__jl_Throwable__jl_Throwable(cause) {
+    this.jl_Throwable__f_e = cause;
+    return this;
   }
   getMessage__T() {
     return this.jl_Throwable__f_s;
@@ -26318,6 +26420,8 @@ function $h_Ltb_oss_tafsir_service_Client$$anon$1() {
 }
 $h_Ltb_oss_tafsir_service_Client$$anon$1.prototype = $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype;
 $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyah__I__I__O = (function(surahNumber, ayahNumber) {
+  var $x_7 = $m_Ltb_oss_tafsir_utils_ResponseExtensions$();
+  var $x_6 = $m_Ltb_oss_tafsir_utils_AsyncExtensions$();
   var $x_4 = $n($m_Lsttp_client3_package$().Lsttp_client3_package$__f_basicRequest);
   var this$2 = $m_Lsttp_client3_package$();
   var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/verses/by_key/", ":", "?fields=text_uthmani"]));
@@ -26347,64 +26451,11 @@ $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyah__I__I__O = (function(
   var this$15 = $m_s_$less$colon$less$();
   var $x_1 = this$15.s_$less$colon$less$__f_singleton;
   var this$16 = $m_s_$less$colon$less$();
-  var future = $as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton));
-  var response = $m_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$().toAsync$extension__s_concurrent_Future__Lcats_effect_kernel_Async__O(future, this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
-  $m_Lcats_implicits$();
-  var tc = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-  var this$49 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(response, tc);
-  var f = new $c_sjsr_AnonFunction1(((x$1) => {
-    var x$1$1 = $as_Lsttp_client3_Response(x$1);
-    if ((x$1$1 !== null)) {
-      var this$21 = $n(x$1$1);
-      var x60 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
-      var this$22 = $n(x$1$1);
-      var x61 = this$22.Lsttp_client3_Response__f_code;
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x61)) {
-        if ((x60 instanceof $c_s_util_Right)) {
-          var ayah = $as_Ltb_oss_tafsir_service_Client$Ayah($n($as_s_util_Right(x60)).s_util_Right__f_value);
-          $m_Lcats_implicits$();
-          var F = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Pure(ayah);
-        }
-        if ((x60 instanceof $c_s_util_Left)) {
-          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x60)).s_util_Left__f_value);
-          $m_Lcats_implicits$();
-          var F$1 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F$1);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Error(error);
-        }
-        throw new $c_s_MatchError(x60);
-      }
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x61)) {
-        $m_Lcats_implicits$();
-        var e = new $c_Ltb_oss_tafsir_service_Client$AyahNotFound(surahNumber, ayahNumber);
-        var F$2 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-        $n(F$2);
-        $m_Lcats_effect_IO$();
-        return new $c_Lcats_effect_IO$Error(e);
-      }
-    }
-    if ((x$1$1 !== null)) {
-      $m_Lcats_implicits$();
-      var response$1 = $n($n($as_s_util_Either($n(x$1$1).Lsttp_client3_Response__f_body)).swap__s_util_Either()).toOption__s_Option();
-      var e$1 = new $c_Ltb_oss_tafsir_service_Client$UnknownError(surahNumber, ayahNumber, response$1);
-      var F$3 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-      $n(F$3);
-      $m_Lcats_effect_IO$();
-      return new $c_Lcats_effect_IO$Error(e$1);
-    }
-    throw new $c_s_MatchError(x$1$1);
-  }));
-  return $n(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+  return $x_7.handleResponse__O__jl_Throwable__jl_Throwable__Lcats_effect_kernel_Async__O($x_6.toAsync__s_concurrent_Future__Lcats_effect_kernel_Async__O($as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton)), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1), new $c_Ltb_oss_tafsir_service_Client$AyahNotFound(surahNumber, ayahNumber), new $c_Ltb_oss_tafsir_service_Client$UnknownError(surahNumber, ayahNumber), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyahInterpretation__I__I__I__O = (function(tafsirId, surahNumber, ayahNumber) {
+  var $x_7 = $m_Ltb_oss_tafsir_utils_ResponseExtensions$();
+  var $x_6 = $m_Ltb_oss_tafsir_utils_AsyncExtensions$();
   var $x_4 = $n($m_Lsttp_client3_package$().Lsttp_client3_package$__f_basicRequest);
   var this$2 = $m_Lsttp_client3_package$();
   var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/tafsirs/", "/by_ayah/", ":", ""]));
@@ -26434,64 +26485,11 @@ $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getAyahInterpretation__I__I__
   var this$15 = $m_s_$less$colon$less$();
   var $x_1 = this$15.s_$less$colon$less$__f_singleton;
   var this$16 = $m_s_$less$colon$less$();
-  var future = $as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton));
-  var response = $m_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$().toAsync$extension__s_concurrent_Future__Lcats_effect_kernel_Async__O(future, this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
-  $m_Lcats_implicits$();
-  var tc = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-  var this$49 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(response, tc);
-  var f = new $c_sjsr_AnonFunction1(((x$1) => {
-    var x$1$1 = $as_Lsttp_client3_Response(x$1);
-    if ((x$1$1 !== null)) {
-      var this$21 = $n(x$1$1);
-      var x81 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
-      var this$22 = $n(x$1$1);
-      var x82 = this$22.Lsttp_client3_Response__f_code;
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x82)) {
-        if ((x81 instanceof $c_s_util_Right)) {
-          var interpretation = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n($as_s_util_Right(x81)).s_util_Right__f_value);
-          $m_Lcats_implicits$();
-          var F = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Pure(interpretation);
-        }
-        if ((x81 instanceof $c_s_util_Left)) {
-          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x81)).s_util_Left__f_value);
-          $m_Lcats_implicits$();
-          var F$1 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F$1);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Error(error);
-        }
-        throw new $c_s_MatchError(x81);
-      }
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_NotFound === x82)) {
-        $m_Lcats_implicits$();
-        var e = new $c_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound(tafsirId, surahNumber, ayahNumber);
-        var F$2 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-        $n(F$2);
-        $m_Lcats_effect_IO$();
-        return new $c_Lcats_effect_IO$Error(e);
-      }
-    }
-    if ((x$1$1 !== null)) {
-      $m_Lcats_implicits$();
-      var response$1 = $n($n($as_s_util_Either($n(x$1$1).Lsttp_client3_Response__f_body)).swap__s_util_Either()).toOption__s_Option();
-      var e$1 = new $c_Ltb_oss_tafsir_service_Client$UnknownError(surahNumber, ayahNumber, response$1);
-      var F$3 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-      $n(F$3);
-      $m_Lcats_effect_IO$();
-      return new $c_Lcats_effect_IO$Error(e$1);
-    }
-    throw new $c_s_MatchError(x$1$1);
-  }));
-  return $n(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$49.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+  return $x_7.handleResponse__O__jl_Throwable__jl_Throwable__Lcats_effect_kernel_Async__O($x_6.toAsync__s_concurrent_Future__Lcats_effect_kernel_Async__O($as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton)), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1), new $c_Ltb_oss_tafsir_service_Client$AyahInterpretationNotFound(tafsirId, surahNumber, ayahNumber), new $c_Ltb_oss_tafsir_service_Client$UnknownError(surahNumber, ayahNumber), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
 });
 $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getSurahs__O = (function() {
+  var $x_7 = $m_Ltb_oss_tafsir_utils_ResponseExtensions$();
+  var $x_6 = $m_Ltb_oss_tafsir_utils_AsyncExtensions$();
   var $x_4 = $n($m_Lsttp_client3_package$().Lsttp_client3_package$__f_basicRequest);
   var this$2 = $m_Lsttp_client3_package$();
   var parts = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T.getArrayOf().constr)(["https://api.quran.com/api/v4/chapters"]));
@@ -26521,52 +26519,7 @@ $c_Ltb_oss_tafsir_service_Client$$anon$1.prototype.getSurahs__O = (function() {
   var this$15 = $m_s_$less$colon$less$();
   var $x_1 = this$15.s_$less$colon$less$__f_singleton;
   var this$16 = $m_s_$less$colon$less$();
-  var future = $as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton));
-  var response = $m_Ltb_oss_tafsir_utils_AsyncExtensions$FutureOps$().toAsync$extension__s_concurrent_Future__Lcats_effect_kernel_Async__O(future, this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
-  $m_Lcats_implicits$();
-  var tc = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-  var this$43 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(response, tc);
-  var f = new $c_sjsr_AnonFunction1(((x$1) => {
-    var x$1$1 = $as_Lsttp_client3_Response(x$1);
-    if ((x$1$1 !== null)) {
-      var this$21 = $n(x$1$1);
-      var x101 = $as_s_util_Either(this$21.Lsttp_client3_Response__f_body);
-      var this$22 = $n(x$1$1);
-      var x102 = this$22.Lsttp_client3_Response__f_code;
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      $n(x$1$1);
-      if (($m_Lsttp_model_StatusCode$().Lsttp_model_StatusCode$__f_Ok === x102)) {
-        if ((x101 instanceof $c_s_util_Right)) {
-          var surahs = $as_Ltb_oss_tafsir_service_Client$Surahs($n($as_s_util_Right(x101)).s_util_Right__f_value);
-          $m_Lcats_implicits$();
-          var F = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Pure(surahs);
-        }
-        if ((x101 instanceof $c_s_util_Left)) {
-          var error = $as_Lsttp_client3_ResponseException($n($as_s_util_Left(x101)).s_util_Left__f_value);
-          $m_Lcats_implicits$();
-          var F$1 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-          $n(F$1);
-          $m_Lcats_effect_IO$();
-          return new $c_Lcats_effect_IO$Error(error);
-        }
-        throw new $c_s_MatchError(x101);
-      }
-      $m_Lcats_implicits$();
-      var response$1 = $n($n(x101).swap__s_util_Either()).toOption__s_Option();
-      var e = new $c_Ltb_oss_tafsir_service_Client$UnknownResponse(response$1);
-      var F$2 = this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1;
-      $n(F$2);
-      $m_Lcats_effect_IO$();
-      return new $c_Lcats_effect_IO$Error(e);
-    }
-    throw new $c_s_MatchError(x$1$1);
-  }));
-  return $n(this$43.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$43.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f);
+  return $x_7.handleResponse__O__jl_Throwable__Lcats_effect_kernel_Async__O($x_6.toAsync__s_concurrent_Future__Lcats_effect_kernel_Async__O($as_s_concurrent_Future($x_5.send__Lsttp_client3_SttpBackend__s_$eq$colon$eq__s_$less$colon$less__O($x_2, $x_1, this$16.s_$less$colon$less$__f_singleton)), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1), new $c_Ltb_oss_tafsir_service_Client$UnknownResponse(), this.Ltb_oss_tafsir_service_Client$$anon$1__f_evidence$1$1);
 });
 var $d_Ltb_oss_tafsir_service_Client$$anon$1 = new $TypeData().initClass($c_Ltb_oss_tafsir_service_Client$$anon$1, "tb.oss.tafsir.service.Client$$anon$1", ({
   Ltb_oss_tafsir_service_Client$$anon$1: 1,
@@ -55630,15 +55583,13 @@ var $d_Ltb_oss_tafsir_service_Client$AyahNotFound = new $TypeData().initClass($c
   s_Product: 1
 }));
 class $c_Ltb_oss_tafsir_service_Client$UnknownError extends $c_jl_Throwable {
-  constructor(surahNumber, ayahNumber, response) {
+  constructor(surahNumber, ayahNumber) {
     super();
     this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber = 0;
     this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber = 0;
-    this.Ltb_oss_tafsir_service_Client$UnknownError__f_response = null;
     this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber = surahNumber;
     this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber = ayahNumber;
-    this.Ltb_oss_tafsir_service_Client$UnknownError__f_response = response;
-    var s = ((((("Unknown error occurred '" + ayahNumber) + "' of surah '") + surahNumber) + ", due to : ") + response);
+    var s = ((("Unknown error occurred '" + ayahNumber) + "' of surah '") + surahNumber);
     $ct_jl_Throwable__T__jl_Throwable__Z__Z__(this, s, null, true, true);
   }
   productIterator__sc_Iterator() {
@@ -55656,58 +55607,32 @@ class $c_Ltb_oss_tafsir_service_Client$UnknownError extends $c_jl_Throwable {
     var data$2 = this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber;
     acc = $m_sr_Statics$().mix__I__I__I(hash$2, data$2);
     var hash$3 = acc;
-    var x = this.Ltb_oss_tafsir_service_Client$UnknownError__f_response;
-    var data$3 = $m_sr_Statics$().anyHash__O__I(x);
-    acc = $m_sr_Statics$().mix__I__I__I(hash$3, data$3);
-    var hash$4 = acc;
-    return $m_sr_Statics$().finalizeHash__I__I__I(hash$4, 3);
+    return $m_sr_Statics$().finalizeHash__I__I__I(hash$3, 2);
   }
   equals__O__Z(x$0) {
     if ((this === x$0)) {
       return true;
     } else if ((x$0 instanceof $c_Ltb_oss_tafsir_service_Client$UnknownError)) {
       var x$0$2 = $as_Ltb_oss_tafsir_service_Client$UnknownError(x$0);
-      if (((this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber) && (this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber))) {
-        var x = this.Ltb_oss_tafsir_service_Client$UnknownError__f_response;
-        var x$2 = $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownError__f_response;
-        var $x_1 = ((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2));
-      } else {
-        var $x_1 = false;
-      }
-      if ($x_1) {
-        $n(x$0$2);
-        return true;
-      } else {
-        return false;
-      }
+      return (((this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber) && (this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber === $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber)) && ($n(x$0$2), true));
     } else {
       return false;
     }
   }
   productArity__I() {
-    return 3;
+    return 2;
   }
   productPrefix__T() {
     return "UnknownError";
   }
   productElement__I__O(n) {
-    switch (n) {
-      case 0: {
-        return this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber;
-        break;
-      }
-      case 1: {
-        return this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber;
-        break;
-      }
-      case 2: {
-        return this.Ltb_oss_tafsir_service_Client$UnknownError__f_response;
-        break;
-      }
-      default: {
-        throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
-      }
+    if ((n === 0)) {
+      return this.Ltb_oss_tafsir_service_Client$UnknownError__f_surahNumber;
     }
+    if ((n === 1)) {
+      return this.Ltb_oss_tafsir_service_Client$UnknownError__f_ayahNumber;
+    }
+    throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
   }
 }
 function $as_Ltb_oss_tafsir_service_Client$UnknownError(obj) {
@@ -55727,12 +55652,9 @@ var $d_Ltb_oss_tafsir_service_Client$UnknownError = new $TypeData().initClass($c
   s_Product: 1
 }));
 class $c_Ltb_oss_tafsir_service_Client$UnknownResponse extends $c_jl_Throwable {
-  constructor(response) {
+  constructor() {
     super();
-    this.Ltb_oss_tafsir_service_Client$UnknownResponse__f_response = null;
-    this.Ltb_oss_tafsir_service_Client$UnknownResponse__f_response = response;
-    var s = (("Unknown response when trying to retrieve surahs: '" + response) + "'");
-    $ct_jl_Throwable__T__jl_Throwable__Z__Z__(this, s, null, true, true);
+    $ct_jl_Throwable__T__jl_Throwable__Z__Z__(this, "Unknown response when trying to retrieve surahs.", null, true, true);
   }
   productIterator__sc_Iterator() {
     return new $c_s_Product$$anon$1(this);
@@ -55746,28 +55668,19 @@ class $c_Ltb_oss_tafsir_service_Client$UnknownResponse extends $c_jl_Throwable {
       return true;
     } else if ((x$0 instanceof $c_Ltb_oss_tafsir_service_Client$UnknownResponse)) {
       var x$0$2 = $as_Ltb_oss_tafsir_service_Client$UnknownResponse(x$0);
-      var x = this.Ltb_oss_tafsir_service_Client$UnknownResponse__f_response;
-      var x$2 = $n(x$0$2).Ltb_oss_tafsir_service_Client$UnknownResponse__f_response;
-      if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
-        $n(x$0$2);
-        return true;
-      } else {
-        return false;
-      }
+      $n(x$0$2);
+      return true;
     } else {
       return false;
     }
   }
   productArity__I() {
-    return 1;
+    return 0;
   }
   productPrefix__T() {
     return "UnknownResponse";
   }
   productElement__I__O(n) {
-    if ((n === 0)) {
-      return this.Ltb_oss_tafsir_service_Client$UnknownResponse__f_response;
-    }
     throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n));
   }
 }
