@@ -39,11 +39,25 @@ object Main {
       option(value := number.toString)(name)
     }
 
-    val tafsirForm = form(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-      select(name := "surahNumber")(surahOptions),
-      select(name := "ayahNumber")(),
-      select(name := "tafsirId")(tafsirOptions),
-      button("تفسير الآية")
+    val tafsirForm = div(
+      cls := "d-flex align-items-center justify-content-center",
+      style := "direction: rtl; white-space: pre-wrap;"
+    )(
+      form(cls := "container text-end", style := "max-width: 400px;")(
+        div(cls := "mb-3")(
+          label(`for` := "surahNumber", cls := "form-label")("السورة"),
+          select(cls := "form-select", name := "surahNumber", id := "surahNumber")(surahOptions)
+        ),
+        div(cls := "mb-3")(
+          label(`for` := "ayahNumber", cls := "form-label")("الآية"),
+          select(cls := "form-select", name := "ayahNumber", id := "ayahNumber")()
+        ),
+        div(cls := "mb-3")(
+          label(`for` := "tafsirId", cls := "form-label")("التفسير"),
+          select(cls := "form-select", name := "tafsirId", id := "tafsirId")(tafsirOptions)
+        ),
+        div(cls := "pt-3")(button(cls := "btn btn-primary", `type` := "submit")("تفسير الآية"))
+      )
     )
 
     val formElement = document.createElement("form").asInstanceOf[html.Form]
@@ -73,13 +87,9 @@ object Main {
         return versesCount[surahNumber] || 0;
       }
 
-      // Initialize ayahNumber options
-      document.addEventListener('DOMContentLoaded', function() {
-        updateAyahOptions();
-      });
-
       // Add change event listener to surahNumber dropdown
       document.addEventListener('DOMContentLoaded', function() {
+        updateAyahOptions();
         var surahSelect = document.getElementsByName('surahNumber')[0];
         surahSelect.addEventListener('change', updateAyahOptions);
       });

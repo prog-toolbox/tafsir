@@ -17457,54 +17457,62 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
     }
     var tafsirOptions = h$1;
   }
-  var $x_10 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().form__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("direction: rtl; text-align: right; white-space: pre-wrap;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
-  var $x_9 = $m_sr_ScalaRunTime$();
-  var $x_8 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("surahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
-  var $x_7 = $m_sr_ScalaRunTime$();
-  var this$17 = $m_Lscalatags_Text$all$();
-  var this$16 = $m_s_$less$colon$less$();
-  var ev = this$16.s_$less$colon$less$__f_singleton;
-  var $x_6 = $x_8.apply__sci_Seq__Lscalatags_Text$TypedTag($x_7.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$17, surahOptions, ev)])));
-  var $x_5 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([])));
-  var $x_4 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("tafsirId", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])));
+  var $x_18 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("d-flex align-items-center justify-content-center", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("direction: rtl; white-space: pre-wrap;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
+  var $x_17 = $m_sr_ScalaRunTime$();
+  var $x_16 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().form__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("container text-end", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("max-width: 400px;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])));
+  var $x_15 = $m_sr_ScalaRunTime$();
+  var $x_14 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("mb-3", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
+  var $x_13 = $m_sr_ScalaRunTime$();
+  var $x_12 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().label__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().for__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("surahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-label", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u0627\u0644\u0633\u0648\u0631\u0629"))])));
+  var $x_11 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-select", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("surahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("surahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])));
+  var $x_10 = $m_sr_ScalaRunTime$();
+  var this$18 = $m_Lscalatags_Text$all$();
+  var this$17 = $m_s_$less$colon$less$();
+  var ev = this$17.s_$less$colon$less$__f_singleton;
+  var $x_9 = $x_14.apply__sci_Seq__Lscalatags_Text$TypedTag($x_13.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_12, $n($x_11).apply__sci_Seq__Lscalatags_Text$TypedTag($x_10.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$18, surahOptions, ev)])))])));
+  var $x_8 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("mb-3", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().label__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().for__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-label", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u0627\u0644\u0622\u064a\u0629"))]))), $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-select", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("ayahNumber", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([])))])));
+  var $x_7 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("mb-3", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])));
+  var $x_6 = $m_sr_ScalaRunTime$();
+  var $x_5 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().label__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().for__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("tafsirId", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-label", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u0627\u0644\u062a\u0641\u0633\u064a\u0631"))])));
+  var $x_4 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().select__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("form-select", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().name__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("tafsirId", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().id__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("tafsirId", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])));
   var $x_3 = $m_sr_ScalaRunTime$();
-  var this$20 = $m_Lscalatags_Text$all$();
-  var this$19 = $m_s_$less$colon$less$();
-  var ev$1 = this$19.s_$less$colon$less$__f_singleton;
-  var tafsirForm = $x_10.apply__sci_Seq__Lscalatags_Text$TypedTag($x_9.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_6, $x_5, $n($x_4).apply__sci_Seq__Lscalatags_Text$TypedTag($x_3.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$20, tafsirOptions, ev$1)]))), $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u062a\u0641\u0633\u064a\u0631 \u0627\u0644\u0622\u064a\u0629"))])))])));
+  var this$23 = $m_Lscalatags_Text$all$();
+  var this$22 = $m_s_$less$colon$less$();
+  var ev$1 = this$22.s_$less$colon$less$__f_singleton;
+  var tafsirForm = $x_18.apply__sci_Seq__Lscalatags_Text$TypedTag($x_17.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($x_16).apply__sci_Seq__Lscalatags_Text$TypedTag($x_15.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_9, $x_8, $n($x_7).apply__sci_Seq__Lscalatags_Text$TypedTag($x_6.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$x_5, $n($x_4).apply__sci_Seq__Lscalatags_Text$TypedTag($x_3.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$Cap$SeqFrag(this$23, tafsirOptions, ev$1)])))]))), $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("pt-3", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().button__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().cls__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("btn btn-primary", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr), $n($m_Lscalatags_Text$all$().type__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("submit", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)])))).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([($m_Lscalatags_Text$all$(), new $c_Lscalatags_Text$StringFrag("\u062a\u0641\u0633\u064a\u0631 \u0627\u0644\u0622\u064a\u0629"))])))])))])))])));
   var formElement = document.createElement("form");
   formElement.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;");
-  var this$22 = $n(tafsirForm);
-  formElement.innerHTML = this$22.toString__T();
+  var this$25 = $n(tafsirForm);
+  formElement.innerHTML = this$25.toString__T();
   document.body.appendChild(formElement);
   var script = document.createElement("script");
-  var this$23 = $n($as_sc_IterableOnceOps($n($m_Ltb_oss_tafsir_service_Surah$().Ltb_oss_tafsir_service_Surah$__f_ayahsCount).map__F1__O(new $c_sjsr_AnonFunction1(((surah) => {
+  var this$26 = $n($as_sc_IterableOnceOps($n($m_Ltb_oss_tafsir_service_Surah$().Ltb_oss_tafsir_service_Surah$__f_ayahsCount).map__F1__O(new $c_sjsr_AnonFunction1(((surah) => {
     var surah$1 = $as_T2(surah);
     return (($n(surah$1)._1__O() + ": ") + $n(surah$1)._2__O());
   })))));
-  script.textContent = (("\n      function updateAyahOptions() {\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        var ayahSelect = document.getElementsByName('ayahNumber')[0];\n        var surahNumber = parseInt(surahSelect.value);\n        var versesCount = getVersesCount(surahNumber);\n\n        ayahSelect.innerHTML = '';\n        for (var i = 1; i <= versesCount; i++) {\n          var option = document.createElement('option');\n          option.value = i.toString();\n          option.text = i.toString();\n          ayahSelect.appendChild(option);\n        }\n      }\n\n      function getVersesCount(surahNumber) {\n        var versesCount = { " + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$23, "", ",", "")) + " };\n        return versesCount[surahNumber] || 0;\n      }\n\n      // Initialize ayahNumber options\n      document.addEventListener('DOMContentLoaded', function() {\n        updateAyahOptions();\n      });\n\n      // Add change event listener to surahNumber dropdown\n      document.addEventListener('DOMContentLoaded', function() {\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        surahSelect.addEventListener('change', updateAyahOptions);\n      });\n    ");
+  script.textContent = (("\n      function updateAyahOptions() {\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        var ayahSelect = document.getElementsByName('ayahNumber')[0];\n        var surahNumber = parseInt(surahSelect.value);\n        var versesCount = getVersesCount(surahNumber);\n\n        ayahSelect.innerHTML = '';\n        for (var i = 1; i <= versesCount; i++) {\n          var option = document.createElement('option');\n          option.value = i.toString();\n          option.text = i.toString();\n          ayahSelect.appendChild(option);\n        }\n      }\n\n      function getVersesCount(surahNumber) {\n        var versesCount = { " + $f_sc_IterableOnceOps__mkString__T__T__T__T(this$26, "", ",", "")) + " };\n        return versesCount[surahNumber] || 0;\n      }\n\n      // Add change event listener to surahNumber dropdown\n      document.addEventListener('DOMContentLoaded', function() {\n        updateAyahOptions();\n        var surahSelect = document.getElementsByName('surahNumber')[0];\n        surahSelect.addEventListener('change', updateAyahOptions);\n      });\n    ");
   document.head.appendChild(script);
   formElement.onsubmit = ((e) => {
     e.preventDefault();
-    var this$24 = $n($m_s_Option$().apply__O__s_Option(document.getElementById("resultContainer")));
-    if (this$24.isEmpty__Z()) {
+    var this$27 = $n($m_s_Option$().apply__O__s_Option(document.getElementById("resultContainer")));
+    if (this$27.isEmpty__Z()) {
       var newResultContainer = document.createElement("div");
       newResultContainer.id = "resultContainer";
       document.body.appendChild(newResultContainer);
       var resultContainer = newResultContainer;
     } else {
-      var resultContainer = this$24.get__O();
+      var resultContainer = this$27.get__O();
     }
     resultContainer.innerHTML = "";
     var x = $as_T(formElement.elements.namedItem("tafsirId").value);
-    var this$27 = $m_jl_Integer$();
-    var tafsirId = this$27.parseInt__T__I__I(x, 10);
-    var x$2 = $as_T(formElement.elements.namedItem("surahNumber").value);
     var this$30 = $m_jl_Integer$();
-    var surahNumber = this$30.parseInt__T__I__I(x$2, 10);
-    var x$3 = $as_T(formElement.elements.namedItem("ayahNumber").value);
+    var tafsirId = this$30.parseInt__T__I__I(x, 10);
+    var x$2 = $as_T(formElement.elements.namedItem("surahNumber").value);
     var this$33 = $m_jl_Integer$();
-    var ayahNumber = this$33.parseInt__T__I__I(x$3, 10);
+    var surahNumber = this$33.parseInt__T__I__I(x$2, 10);
+    var x$3 = $as_T(formElement.elements.namedItem("ayahNumber").value);
+    var this$36 = $m_jl_Integer$();
+    var ayahNumber = this$36.parseInt__T__I__I(x$3, 10);
     var resultIO = $n($as_Lcats_effect_IO(service.getAyahInterpretation__I__I__I__O(tafsirId, surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((interpretation) => {
       var interpretation$1 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation(interpretation);
       return $n($as_Lcats_effect_IO(service.getAyah__I__I__O(surahNumber, ayahNumber))).flatMap__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((ayah) => {
@@ -17524,25 +17532,25 @@ $c_Ltb_oss_tafsir_Main$.prototype.main__AT__V = (function(args) {
             var interpretation$2 = $as_Ltb_oss_tafsir_service_Client$AyahInterpretation($n(x11).T3__f__1);
             var ayah$2 = $as_Ltb_oss_tafsir_service_Client$Ayah($n(x11).T3__f__2);
             var surah$4 = $as_Ltb_oss_tafsir_service_Surah($n(x11).T3__f__3);
-            var $x_12 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("direction: rtl; text-align: right; white-space: pre-wrap;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
-            var $x_11 = $m_sr_ScalaRunTime$();
+            var $x_20 = $n($n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag())).apply__sci_Seq__Lscalatags_Text$TypedTag($m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([$n($m_Lscalatags_Text$all$().style__Lscalatags_generic_Attr()).$colon$eq__O__Lscalatags_generic_AttrValue__Lscalatags_generic_AttrPair("direction: rtl; text-align: right; white-space: pre-wrap;", $m_Lscalatags_Text$all$().Lscalatags_Text$all$__f_stringAttr)]))));
+            var $x_19 = $m_sr_ScalaRunTime$();
             $m_Lscalatags_Text$all$();
             var v$1 = $p_Ltb_oss_tafsir_Main$__formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T($m_Ltb_oss_tafsir_Main$(), surah$4, ayah$2, interpretation$2);
-            var resultNode = $x_12.apply__sci_Seq__Lscalatags_Text$TypedTag($x_11.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$1)])));
-            var this$36 = $n(resultNode);
-            resultContainer.innerHTML = this$36.toString__T();
+            var resultNode = $x_20.apply__sci_Seq__Lscalatags_Text$TypedTag($x_19.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$1)])));
+            var this$39 = $n(resultNode);
+            resultContainer.innerHTML = this$39.toString__T();
             break matchResult3;
           }
         }
         if ((x$1$5 instanceof $c_s_util_Left)) {
           var ex = $as_jl_Throwable($n($as_s_util_Left(x$1$5)).s_util_Left__f_value);
-          var $x_14 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag()));
-          var $x_13 = $m_sr_ScalaRunTime$();
+          var $x_22 = $n($as_Lscalatags_Text$TypedTag($m_Lscalatags_Text$all$().div__Lscalatags_generic_TypedTag()));
+          var $x_21 = $m_sr_ScalaRunTime$();
           $m_Lscalatags_Text$all$();
           var v$2 = ("Failed to interpret: " + $n(ex).getMessage__T());
-          var errorNode = $x_14.apply__sci_Seq__Lscalatags_Text$TypedTag($x_13.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$2)])));
-          var this$38 = $n(errorNode);
-          resultContainer.innerHTML = this$38.toString__T();
+          var errorNode = $x_22.apply__sci_Seq__Lscalatags_Text$TypedTag($x_21.wrapRefArray__AO__sci_ArraySeq(new ($d_Lscalatags_generic_Modifier.getArrayOf().constr)([new $c_Lscalatags_Text$StringFrag(v$2)])));
+          var this$41 = $n(errorNode);
+          resultContainer.innerHTML = this$41.toString__T();
           break matchResult3;
         }
         throw new $c_s_MatchError(x$1$5);
@@ -77314,16 +77322,28 @@ var $d_scm_Map$WithDefault = new $TypeData().initClass($c_scm_Map$WithDefault, "
 }));
 /** @constructor */
 function $c_Lscalatags_Text$all$() {
+  this.Lscalatags_Text$all$__f_class$lzy3 = null;
+  this.Lscalatags_Text$all$__f_classbitmap$3 = false;
+  this.Lscalatags_Text$all$__f_cls$lzy2 = null;
+  this.Lscalatags_Text$all$__f_clsbitmap$2 = false;
+  this.Lscalatags_Text$all$__f_id$lzy3 = null;
+  this.Lscalatags_Text$all$__f_idbitmap$3 = false;
   this.Lscalatags_Text$all$__f_style$lzy4 = null;
   this.Lscalatags_Text$all$__f_stylebitmap$4 = false;
   this.Lscalatags_Text$all$__f_name$lzy2 = null;
   this.Lscalatags_Text$all$__f_namebitmap$2 = false;
+  this.Lscalatags_Text$all$__f_type$lzy3 = null;
+  this.Lscalatags_Text$all$__f_typebitmap$3 = false;
   this.Lscalatags_Text$all$__f_value$lzy2 = null;
   this.Lscalatags_Text$all$__f_valuebitmap$2 = false;
+  this.Lscalatags_Text$all$__f_for$lzy2 = null;
+  this.Lscalatags_Text$all$__f_forbitmap$2 = false;
   this.Lscalatags_Text$all$__f_div$lzy2 = null;
   this.Lscalatags_Text$all$__f_divbitmap$2 = false;
   this.Lscalatags_Text$all$__f_form$lzy2 = null;
   this.Lscalatags_Text$all$__f_formbitmap$2 = false;
+  this.Lscalatags_Text$all$__f_label$lzy2 = null;
+  this.Lscalatags_Text$all$__f_labelbitmap$2 = false;
   this.Lscalatags_Text$all$__f_button$lzy2 = null;
   this.Lscalatags_Text$all$__f_buttonbitmap$2 = false;
   this.Lscalatags_Text$all$__f_select$lzy2 = null;
@@ -77344,6 +77364,27 @@ $c_Lscalatags_Text$all$.prototype.constructor = $c_Lscalatags_Text$all$;
 function $h_Lscalatags_Text$all$() {
 }
 $h_Lscalatags_Text$all$.prototype = $c_Lscalatags_Text$all$.prototype;
+$c_Lscalatags_Text$all$.prototype.class__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_Text$all$__f_classbitmap$3)) {
+    this.Lscalatags_Text$all$__f_class$lzy3 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "class", null, false);
+    this.Lscalatags_Text$all$__f_classbitmap$3 = true;
+  }
+  return this.Lscalatags_Text$all$__f_class$lzy3;
+});
+$c_Lscalatags_Text$all$.prototype.cls__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_Text$all$__f_clsbitmap$2)) {
+    this.Lscalatags_Text$all$__f_cls$lzy2 = this.class__Lscalatags_generic_Attr();
+    this.Lscalatags_Text$all$__f_clsbitmap$2 = true;
+  }
+  return this.Lscalatags_Text$all$__f_cls$lzy2;
+});
+$c_Lscalatags_Text$all$.prototype.id__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_Text$all$__f_idbitmap$3)) {
+    this.Lscalatags_Text$all$__f_id$lzy3 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "id", null, false);
+    this.Lscalatags_Text$all$__f_idbitmap$3 = true;
+  }
+  return this.Lscalatags_Text$all$__f_id$lzy3;
+});
 $c_Lscalatags_Text$all$.prototype.style__Lscalatags_generic_Attr = (function() {
   if ((!this.Lscalatags_Text$all$__f_stylebitmap$4)) {
     this.Lscalatags_Text$all$__f_style$lzy4 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "style", null, false);
@@ -77358,12 +77399,26 @@ $c_Lscalatags_Text$all$.prototype.name__Lscalatags_generic_Attr = (function() {
   }
   return this.Lscalatags_Text$all$__f_name$lzy2;
 });
+$c_Lscalatags_Text$all$.prototype.type__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_Text$all$__f_typebitmap$3)) {
+    this.Lscalatags_Text$all$__f_type$lzy3 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "type", null, false);
+    this.Lscalatags_Text$all$__f_typebitmap$3 = true;
+  }
+  return this.Lscalatags_Text$all$__f_type$lzy3;
+});
 $c_Lscalatags_Text$all$.prototype.value__Lscalatags_generic_Attr = (function() {
   if ((!this.Lscalatags_Text$all$__f_valuebitmap$2)) {
     this.Lscalatags_Text$all$__f_value$lzy2 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "value", null, false);
     this.Lscalatags_Text$all$__f_valuebitmap$2 = true;
   }
   return this.Lscalatags_Text$all$__f_value$lzy2;
+});
+$c_Lscalatags_Text$all$.prototype.for__Lscalatags_generic_Attr = (function() {
+  if ((!this.Lscalatags_Text$all$__f_forbitmap$2)) {
+    this.Lscalatags_Text$all$__f_for$lzy2 = $f_Lscalatags_generic_Util__attr__T__Lscalatags_generic_Namespace__Z__Lscalatags_generic_Attr(this, "for", null, false);
+    this.Lscalatags_Text$all$__f_forbitmap$2 = true;
+  }
+  return this.Lscalatags_Text$all$__f_for$lzy2;
 });
 $c_Lscalatags_Text$all$.prototype.div__Lscalatags_generic_TypedTag = (function() {
   if ((!this.Lscalatags_Text$all$__f_divbitmap$2)) {
@@ -77378,6 +77433,13 @@ $c_Lscalatags_Text$all$.prototype.form__Lscalatags_generic_TypedTag = (function(
     this.Lscalatags_Text$all$__f_formbitmap$2 = true;
   }
   return this.Lscalatags_Text$all$__f_form$lzy2;
+});
+$c_Lscalatags_Text$all$.prototype.label__Lscalatags_generic_TypedTag = (function() {
+  if ((!this.Lscalatags_Text$all$__f_labelbitmap$2)) {
+    this.Lscalatags_Text$all$__f_label$lzy2 = $f_Lscalatags_text_TagFactory__tag__T__Z__Lscalatags_generic_TypedTag(this, "label", false);
+    this.Lscalatags_Text$all$__f_labelbitmap$2 = true;
+  }
+  return this.Lscalatags_Text$all$__f_label$lzy2;
 });
 $c_Lscalatags_Text$all$.prototype.button__Lscalatags_generic_TypedTag = (function() {
   if ((!this.Lscalatags_Text$all$__f_buttonbitmap$2)) {

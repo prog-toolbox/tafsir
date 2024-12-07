@@ -44,8 +44,11 @@ Compile / resourceGenerators += Def.task {
   <head>
       <meta charset="UTF-8">
       <title>Tafsir</title>
-  </head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ </head>
   <body>
+      <div id="app" class="container mt-5"></div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="main.js"></script>
   </body>
   </html>
