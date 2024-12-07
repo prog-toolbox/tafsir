@@ -6,6 +6,7 @@ import org.scalajs.dom
 import tb.oss.tafsir.service.{Client, Surah, Tafsir, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
+import scalatags.Text
 import tb.oss.tafsir.service.Client.{Ayah, AyahInterpretation}
 import scalatags.Text.all.*
 
@@ -16,14 +17,16 @@ object Main {
     tagPattern.replaceAllIn(html, "")
   }
 
-  private def formatAyahInterpretation(surah: Surah, ayah: Ayah, ayahInterpretation: AyahInterpretation): String = {
-    val fields = List(
-      s"مكان النزول: ${surah.revelationPlace}",
-      s"الآية: ${ayah.verse.`text_uthmani`}",
-      s"التفسير: ${stripHtmlTags(ayahInterpretation.tafsir.`text`)}"
-    )
-
-    fields.map(field => s"• $field").mkString("\n")
+  private def displayAyahInterpretation(ayah: Ayah, ayahInterpretation: AyahInterpretation): Text.TypedTag[String] = {
+    {
+      div(cls := "card mb-3", style := "direction: rtl; text-align: right;")(
+        div(cls := "card-body")(
+          h5(cls := "card-title")("تفسير الآية"),
+          p(cls := "card-text")(strong("الآية: "), span(ayah.verse.`text_uthmani`)),
+          p(cls := "card-text")(strong("التفسير: "), span(stripHtmlTags(ayahInterpretation.tafsir.`text`)))
+        )
+      )
+    }
   }
 
   def main(args: Array[String]): Unit = {
@@ -39,29 +42,26 @@ object Main {
       option(value := number.toString)(name)
     }
 
-    val tafsirForm = div(
-      cls := "d-flex align-items-center justify-content-center",
-      style := "direction: rtl; white-space: pre-wrap;"
-    )(
-      form(cls := "container text-end", style := "max-width: 400px;")(
-        div(cls := "mb-3 ms-2")(
-          label(`for` := "surahNumber", cls := "form-label")("السورة"),
-          select(cls := "form-select", name := "surahNumber", id := "surahNumber")(surahOptions)
-        ),
-        div(cls := "mb-3 ms-2")(
-          label(`for` := "ayahNumber", cls := "form-label")("الآية"),
-          select(cls := "form-select", name := "ayahNumber", id := "ayahNumber")()
-        ),
-        div(cls := "mb-3 ms-2")(
-          label(`for` := "tafsirId", cls := "form-label")("التفسير"),
-          select(cls := "form-select", name := "tafsirId", id := "tafsirId")(tafsirOptions)
-        ),
-        div(cls := "pt-3")(button(cls := "btn btn-primary", `type` := "submit")("تفسير الآية"))
+    val tafsirForm =
+      div(cls := "d-flex align-items-center justify-content-center", style := "direction: rtl; white-space: pre-wrap;")(
+        form(cls := "container text-end", style := "max-width: 400px;")(
+          div(cls := "mb-3 ms-2")(
+            label(`for` := "surahNumber", cls := "form-label")("السورة"),
+            select(cls := "form-select", name := "surahNumber", id := "surahNumber")(surahOptions)
+          ),
+          div(cls := "mb-3 ms-2")(
+            label(`for` := "ayahNumber", cls := "form-label")("الآية"),
+            select(cls := "form-select", name := "ayahNumber", id := "ayahNumber")()
+          ),
+          div(cls := "mb-3 ms-2")(
+            label(`for` := "tafsirId", cls := "form-label")("التفسير"),
+            select(cls := "form-select", name := "tafsirId", id := "tafsirId")(tafsirOptions)
+          ),
+          div(cls := "pt-3")(button(cls := "btn btn-primary", `type` := "submit")("تفسير الآية"))
+        )
       )
-    )
 
     val formElement = document.createElement("form").asInstanceOf[html.Form]
-    formElement.setAttribute("style", "direction: rtl; text-align: right; white-space: pre-wrap;")
     formElement.innerHTML = tafsirForm.render
     document.body.appendChild(formElement)
 
@@ -112,16 +112,15 @@ object Main {
       val surahNumber = formElement.elements.namedItem("surahNumber").asInstanceOf[html.Input].value.toInt
       val ayahNumber = formElement.elements.namedItem("ayahNumber").asInstanceOf[html.Input].value.toInt
 
-      val resultIO: IO[(AyahInterpretation, Ayah, Surah)] = for {
+      val resultIO: IO[(AyahInterpretation, Ayah)] = for {
         interpretation <- service.getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
         ayah <- service.getAyah(surahNumber, ayahNumber)
-        surah <- service.getSurah(surahNumber)
-      } yield (interpretation, ayah, surah)
+      } yield (interpretation, ayah)
 
       resultIO.unsafeRunAsync {
-        case Right((interpretation, ayah, surah)) =>
+        case Right((interpretation, ayah)) =>
           val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-            formatAyahInterpretation(surah, ayah, interpretation)
+            displayAyahInterpretation(ayah, interpretation)
           )
           resultContainer.innerHTML = resultNode.render
         case Left(ex) =>
