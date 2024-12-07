@@ -3,7 +3,7 @@ package tb.oss.tafsir
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import org.scalajs.dom
-import tb.oss.tafsir.service.{Client, Surah, TafsirService}
+import tb.oss.tafsir.service.{Client, Surah, Tafsir, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import tb.oss.tafsir.service.Client.{Ayah, AyahInterpretation}
@@ -14,9 +14,7 @@ object Main {
   private def formatAyahInterpretation(surah: Surah, ayah: Ayah, ayahInterpretation: AyahInterpretation): String = {
     val fields = List(
       s"مكان النزول: ${surah.revelationPlace}",
-      s"عدد الآيات: ${surah.versesCount}",
       s"الآية: ${ayah.verse.`text_uthmani`}",
-      s"كتاب التفسير: ${ayahInterpretation.tafsir.`resource_name`}",
       s"التفسير: ${ayahInterpretation.tafsir.`text`}"
     )
 
@@ -32,10 +30,14 @@ object Main {
       option(value := number.toString)(s"$number - $name")
     }
 
+    val tafsirOptions = Tafsir.list.toList.sortBy(_._1).map { case (number, name) =>
+      option(value := number.toString)(name)
+    }
+
     val tafsirForm = form(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-      input(name := "tafsirId", placeholder := "رقم التفسير"),
       select(name := "surahNumber")(surahOptions),
       select(name := "ayahNumber")(),
+      select(name := "tafsirId")(tafsirOptions),
       button("تفسير الآية")
     )
 
