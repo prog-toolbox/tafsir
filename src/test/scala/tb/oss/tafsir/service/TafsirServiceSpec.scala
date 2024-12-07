@@ -27,6 +27,7 @@ class TafsirServiceSpec extends AnyFunSuite with Matchers {
     override def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): IO[AyahInterpretation] =
       getAyahInterpretationFn
 
+    override def getSurahs: IO[Surahs] = ???
   }
 
   test("It should return an ayah interpretation") {

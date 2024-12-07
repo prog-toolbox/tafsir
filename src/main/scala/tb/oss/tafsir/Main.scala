@@ -3,7 +3,7 @@ package tb.oss.tafsir
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import org.scalajs.dom
-import tb.oss.tafsir.service.{Client, TafsirService}
+import tb.oss.tafsir.service.{Client, Surah, TafsirService}
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import tb.oss.tafsir.service.Client.{Ayah, AyahInterpretation}
@@ -13,14 +13,18 @@ object Main {
 
   def formatAyahInterpretation(
     surahNumber: Int,
+    surah: Surah,
     ayahNumber: Int,
     ayah: Ayah,
     ayahInterpretation: AyahInterpretation
   ): String = {
     val fields = List(
       s"رقم السورة: $surahNumber",
-      s"رقم الآية: $ayahNumber",
+      s"السورة: ${surah.nameArabic}",
+      s"مكان النزول: ${surah.revelationPlace}",
+      s"عدد الآيات: ${surah.versesCount}",
       s"الآية: ${ayah.verse.`text_uthmani`}",
+      s"رقم الآية: $ayahNumber",
       s"كتاب التفسير: ${ayahInterpretation.tafsir.`resource_name`}",
       s"التفسير: ${ayahInterpretation.tafsir.`text`}"
     )
@@ -61,15 +65,16 @@ object Main {
       val surahNumber = formElement.elements.namedItem("surahNumber").asInstanceOf[html.Input].value.toInt
       val ayahNumber = formElement.elements.namedItem("ayahNumber").asInstanceOf[html.Input].value.toInt
 
-      val ayahIO: IO[Ayah] = service.getAyah(surahNumber, ayahNumber)
-      val resultIO: IO[(AyahInterpretation, Ayah)] = service
-        .getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
-        .flatMap(interpretation => ayahIO.map(ayah => (interpretation, ayah)))
+      val resultIO: IO[(AyahInterpretation, Ayah, Surah)] = for {
+        interpretation <- service.getAyahInterpretation(tafsirId, surahNumber, ayahNumber)
+        ayah <- service.getAyah(surahNumber, ayahNumber)
+        surah <- service.getSurah(surahNumber)
+      } yield (interpretation, ayah, surah)
 
       resultIO.unsafeRunAsync {
-        case Right((interpretation, ayah)) =>
+        case Right((interpretation, ayah, surah)) =>
           val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-            formatAyahInterpretation(surahNumber, ayahNumber, ayah, interpretation)
+            formatAyahInterpretation(surahNumber, surah, ayahNumber, ayah, interpretation)
           )
           resultContainer.innerHTML = resultNode.render
         case Left(ex) =>

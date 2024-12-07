@@ -16,6 +16,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 trait Client[F[_]] {
   def getAyah(surahNumber: Int, ayahNumber: Int): F[Ayah]
   def getAyahInterpretation(tafsirId: Int, surahNumber: Int, ayahNumber: Int): F[AyahInterpretation]
+  def getSurahs: F[Surahs]
 }
 
 object Client {
@@ -29,10 +30,15 @@ object Client {
   case class UnknownError(surahNumber: Int, ayahNumber: Int, response: Option[ResponseException[String, io.circe.Error]])
       extends Throwable(s"Unknown error occurred '$ayahNumber' of surah '$surahNumber, due to : $response")
 
+  case class UnknownResponse(response: Option[ResponseException[String, io.circe.Error]])
+      extends Throwable(s"Unknown response when trying to retrieve surahs: '$response'")
+
   case class AyahInterpretation(tafsir: Tafsir)
 
   case class Verse(`hizb_number`: Int, `page_number`: Int, `juz_number`: Int, `text_uthmani`: String)
   case class Ayah(verse: Verse)
+  case class Surahs(`chapters`: List[Chapter])
+  case class Chapter(`id`: Int, `name_arabic`: String, `verses_count`: Int, `revelation_place`: String)
 
   case class Tafsir(
     `resource_id`: Int,
@@ -83,6 +89,23 @@ object Client {
           AyahInterpretationNotFound(tafsirId, surahNumber, ayahNumber).raiseError
         case res: Response[Either[ResponseException[String, io.circe.Error], AyahInterpretation]] =>
           UnknownError(surahNumber, ayahNumber, res.body.swap.toOption).raiseError
+      }
+    }
+
+    override def getSurahs: F[Surahs] = {
+      val response = basicRequest
+        .get(uri"https://api.quran.com/api/v4/chapters")
+        .headers(Map("Accept" -> "application/json"))
+        .response(asJson[Surahs])
+        .send(FetchBackend())
+        .toAsync[F]
+      response.flatMap {
+        case Response(body, StatusCode.Ok, _, _, _, _) =>
+          body match {
+            case Right(surahs) => surahs.pure
+            case Left(error)   => error.raiseError
+          }
+        case Response(body, _, _, _, _, _) => UnknownResponse(body.swap.toOption).raiseError
       }
     }
   }
