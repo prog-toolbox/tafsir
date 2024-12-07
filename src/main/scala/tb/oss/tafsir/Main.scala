@@ -12,15 +12,12 @@ import scalatags.Text.all.*
 object Main {
 
   def formatAyahInterpretation(
-    surahNumber: Int,
     surah: Surah,
     ayahNumber: Int,
     ayah: Ayah,
     ayahInterpretation: AyahInterpretation
   ): String = {
     val fields = List(
-      s"رقم السورة: $surahNumber",
-      s"السورة: ${surah.nameArabic}",
       s"مكان النزول: ${surah.revelationPlace}",
       s"عدد الآيات: ${surah.versesCount}",
       s"الآية: ${ayah.verse.`text_uthmani`}",
@@ -37,9 +34,13 @@ object Main {
 
     val service = TafsirService.impl[IO](Client.impl[IO]())
 
+    val surahOptions = Surah.list.toList.sortBy(_._1).map { case (number, name) =>
+      option(value := number.toString)(s"$number - $name")
+    }
+
     val tafsirForm = form(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
       input(name := "tafsirId", placeholder := "رقم التفسير"),
-      input(name := "surahNumber", placeholder := "رقم السورة"),
+      select(name := "surahNumber")(surahOptions),
       input(name := "ayahNumber", placeholder := "رقم الآية"),
       button("تفسير الآية")
     )
@@ -74,7 +75,7 @@ object Main {
       resultIO.unsafeRunAsync {
         case Right((interpretation, ayah, surah)) =>
           val resultNode = div(style := "direction: rtl; text-align: right; white-space: pre-wrap;")(
-            formatAyahInterpretation(surahNumber, surah, ayahNumber, ayah, interpretation)
+            formatAyahInterpretation(surah, ayahNumber, ayah, interpretation)
           )
           resultContainer.innerHTML = resultNode.render
         case Left(ex) =>
