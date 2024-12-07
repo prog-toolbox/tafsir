@@ -11,11 +11,16 @@ import scalatags.Text.all.*
 
 object Main {
 
+  private def stripHtmlTags(html: String): String = {
+    val tagPattern = "<[^>]*>".r
+    tagPattern.replaceAllIn(html, "")
+  }
+
   private def formatAyahInterpretation(surah: Surah, ayah: Ayah, ayahInterpretation: AyahInterpretation): String = {
     val fields = List(
       s"مكان النزول: ${surah.revelationPlace}",
       s"الآية: ${ayah.verse.`text_uthmani`}",
-      s"التفسير: ${ayahInterpretation.tafsir.`text`}"
+      s"التفسير: ${stripHtmlTags(ayahInterpretation.tafsir.`text`)}"
     )
 
     fields.map(field => s"• $field").mkString("\n")

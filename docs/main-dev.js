@@ -17344,8 +17344,12 @@ function $asArrayOf_Lsttp_ws_WebSocket(obj, depth) {
 function $s_Ltb_oss_tafsir_Main__main__AT__V(args) {
   $m_Ltb_oss_tafsir_Main$().main__AT__V(args);
 }
+function $p_Ltb_oss_tafsir_Main$__stripHtmlTags__T__T($thiz, html) {
+  var tagPattern = $ct_s_util_matching_Regex__T__sci_Seq__(new $c_s_util_matching_Regex(), "<[^>]*>", $m_sci_Nil$());
+  return tagPattern.replaceAllIn__jl_CharSequence__T__T(html, "");
+}
 function $p_Ltb_oss_tafsir_Main$__formatAyahInterpretation__Ltb_oss_tafsir_service_Surah__Ltb_oss_tafsir_service_Client$Ayah__Ltb_oss_tafsir_service_Client$AyahInterpretation__T($thiz, surah, ayah, ayahInterpretation) {
-  var fields = new $c_sci_$colon$colon(("\u0645\u0643\u0627\u0646 \u0627\u0644\u0646\u0632\u0648\u0644: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_revelationPlace), new $c_sci_$colon$colon(("\u0627\u0644\u0622\u064a\u0629: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$Ayah__f_verse).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text), $m_sci_Nil$())));
+  var fields = new $c_sci_$colon$colon(("\u0645\u0643\u0627\u0646 \u0627\u0644\u0646\u0632\u0648\u0644: " + $n(surah).Ltb_oss_tafsir_service_Surah__f_revelationPlace), new $c_sci_$colon$colon(("\u0627\u0644\u0622\u064a\u0629: " + $n($n(ayah).Ltb_oss_tafsir_service_Client$Ayah__f_verse).Ltb_oss_tafsir_service_Client$Verse__f_text_uthmani), new $c_sci_$colon$colon(("\u0627\u0644\u062a\u0641\u0633\u064a\u0631: " + $p_Ltb_oss_tafsir_Main$__stripHtmlTags__T__T($thiz, $n($n(ayahInterpretation).Ltb_oss_tafsir_service_Client$AyahInterpretation__f_tafsir).Ltb_oss_tafsir_service_Client$Tafsir__f_text)), $m_sci_Nil$())));
   var f = ((field) => {
     var field$1 = $as_T(field);
     return ("\u2022 " + field$1);
@@ -23100,6 +23104,15 @@ $c_ju_regex_Matcher.prototype.replaceFirst__T__T = (function(replacement) {
     return this.ju_regex_Matcher__f_inputstr;
   }
 });
+$c_ju_regex_Matcher.prototype.replaceAll__T__T = (function(replacement) {
+  this.reset__ju_regex_Matcher();
+  var sb = $ct_jl_StringBuffer__(new $c_jl_StringBuffer());
+  while (this.find__Z()) {
+    this.appendReplacement__jl_StringBuffer__T__ju_regex_Matcher(sb, replacement);
+  }
+  this.appendTail__jl_StringBuffer__jl_StringBuffer(sb);
+  return sb.toString__T();
+});
 $c_ju_regex_Matcher.prototype.reset__ju_regex_Matcher = (function() {
   this.ju_regex_Matcher__f_regionStart0 = 0;
   $n(this.ju_regex_Matcher__f_java$util$regex$Matcher$$input0);
@@ -24884,6 +24897,11 @@ $c_s_util_matching_Regex.prototype.unapplySeq__jl_CharSequence__s_Option = (func
   } else {
     return $m_s_None$();
   }
+});
+$c_s_util_matching_Regex.prototype.replaceAllIn__jl_CharSequence__T__T = (function(target, replacement) {
+  var this$1 = $n(this.s_util_matching_Regex__f_pattern);
+  var m = new $c_ju_regex_Matcher(this$1, $dp_toString__T($n(target)));
+  return m.replaceAll__T__T(replacement);
 });
 $c_s_util_matching_Regex.prototype.toString__T = (function() {
   return $n(this.s_util_matching_Regex__f_pattern).ju_regex_Pattern__f__pattern;
