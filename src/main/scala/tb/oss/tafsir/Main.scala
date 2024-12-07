@@ -44,15 +44,15 @@ object Main {
       style := "direction: rtl; white-space: pre-wrap;"
     )(
       form(cls := "container text-end", style := "max-width: 400px;")(
-        div(cls := "mb-3")(
+        div(cls := "mb-3 ms-2")(
           label(`for` := "surahNumber", cls := "form-label")("السورة"),
           select(cls := "form-select", name := "surahNumber", id := "surahNumber")(surahOptions)
         ),
-        div(cls := "mb-3")(
+        div(cls := "mb-3 ms-2")(
           label(`for` := "ayahNumber", cls := "form-label")("الآية"),
           select(cls := "form-select", name := "ayahNumber", id := "ayahNumber")()
         ),
-        div(cls := "mb-3")(
+        div(cls := "mb-3 ms-2")(
           label(`for` := "tafsirId", cls := "form-label")("التفسير"),
           select(cls := "form-select", name := "tafsirId", id := "tafsirId")(tafsirOptions)
         ),
